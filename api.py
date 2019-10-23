@@ -139,6 +139,8 @@ def writeRules(sublink,selectfirst):    #策略组及规则
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国际媒体", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式","手动选择"] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
@@ -152,6 +154,8 @@ def writeRules(sublink,selectfirst):    #策略组及规则
                     '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "动画疯", type: select, proxies:  ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国际媒体", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式","手动选择"] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
@@ -273,6 +277,8 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国际媒体", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式","手动选择"] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
@@ -286,12 +292,14 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                     '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "动画疯", type: select, proxies:  ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国际媒体", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式","手动选择"] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
                     '- { name: "Apple", type: select, proxies: ["DIRECT", "代理模式"] }\n'\
                     '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT"] }\n\n\n'\
-                    'Rule:\n'            
+                    'Rule:\n'             
         rules = getrules()        
         currenttime = '# 更新时间为（看分钟就行，不知道哪个时区）：'+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'\n'
         content = currenttime+rules[0]+rules[1]+Peoxies+ProxyGroup+rules[2]
