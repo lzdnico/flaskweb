@@ -353,13 +353,12 @@ def get(name):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n'))
+        #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n'))
         sub = request.form['left']
         Clash = 'http://185.238.248.145:10086/clash/'+str(sub).replace('/','!')
         QX = 'http://185.238.248.145:2333/'+str(sub).replace('/','!')+'@STC'
         return render_template('index.html', Clash = str(Clash),QX = str(QX))
     return render_template('index.html')
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=False,port=10086)
