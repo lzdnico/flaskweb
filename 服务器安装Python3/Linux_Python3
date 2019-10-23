@@ -1,0 +1,15 @@
+python -v 查看版本
+python3 -V
+
+安装python 3
+wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz  下载安装包
+tar -zxvf Python-3.5.2.tgz  解压
+cd Python-3.5.2/  定位
+./configure  如果报错：yum install make gcc 或者 apt-get install make gcc
+./configure --prefix=/usr/local/python3 --enable-optimizations
+make 
+make install 
+
+安装pip3 
+apt-get update
+apt-get install python3-pip
