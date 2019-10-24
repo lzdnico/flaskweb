@@ -17,6 +17,15 @@
 - DOMAIN-SUFFIX,nflximg.net,Netflix
 - DOMAIN-SUFFIX,nflxso.net,Netflix
 - DOMAIN-SUFFIX,nflxvideo.net,Netflix
+- IP-CIDR,23.246.0.0/18,Netflix
+- IP-CIDR,37.77.184.0/21,Netflix
+- IP-CIDR,45.57.0.0/17,Netflix
+- IP-CIDR,64.120.128.0/17,Netflix
+- IP-CIDR,66.197.128.0/17,Netflix
+- IP-CIDR,108.175.32.0/20,Netflix
+- IP-CIDR,192.173.64.0/18,Netflix
+- IP-CIDR,198.38.96.0/19,Netflix
+- IP-CIDR,198.45.48.0/20,Netflix
 # Unbreak
 # > Firebase Cloud Messaging
 - DOMAIN,mtalk.google.com,DIRECT
@@ -1331,16 +1340,7 @@
 - IP-CIDR,125.209.208.0/20,代理模式
 - IP-CIDR,147.92.128.0/17,代理模式
 - IP-CIDR,203.104.144.0/21,代理模式
-# > Netflix
-- IP-CIDR,23.246.0.0/18,国际媒体
-- IP-CIDR,37.77.184.0/21,国际媒体
-- IP-CIDR,45.57.0.0/17,国际媒体
-- IP-CIDR,64.120.128.0/17,国际媒体
-- IP-CIDR,66.197.128.0/17,国际媒体
-- IP-CIDR,108.175.32.0/20,国际媒体
-- IP-CIDR,192.173.64.0/18,国际媒体
-- IP-CIDR,198.38.96.0/19,国际媒体
-- IP-CIDR,198.45.48.0/20,国际媒体
+
 
 # GeoIP China
 - GEOIP,CN,DIRECT
