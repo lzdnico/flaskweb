@@ -13,7 +13,7 @@ import time
 from flask import render_template
 from flask import request
 urllib3.disable_warnings()
-aff = 'STC可用，注册地址：prohub.stchks.com/auth/register?code=gzI5'
+aff = 'STC可用，注册地址：tokyo-hot.stchks.com/auth/register?code=gzI5'
 
 
 def safe_base64_decode(s): # 解码
@@ -363,7 +363,7 @@ def get(name):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
-        #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n'))
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n'))
         sub = request.form['left']
         custom = urllib.parse.quote(request.form['custom'])
         Clash = 'http://185.238.248.145:10086/clash/'+str(sub).replace('/','!')
