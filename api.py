@@ -6,6 +6,8 @@ import  base64
 import  re
 import  requests
 import urllib3
+import urllib
+import urllib.parse
 import json
 import time
 from flask import render_template
@@ -361,11 +363,18 @@ def get(name):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n'))
+        #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n'))
         sub = request.form['left']
+        custom = urllib.parse.quote(request.form['custom'])
         Clash = 'http://185.238.248.145:10086/clash/'+str(sub).replace('/','!')
+        if custom == '':
+             CustomClash = '请填入想要的节点，假设想要香港就@香港，假设想要香港的2倍节点就@香港&2倍。支持多个@'
+             CustomSSR =   '请填入想要的节点，同上'
+        else:
+            CustomClash = 'http://185.238.248.145:10086/clash/'+str(sub).replace('/','!')+str(custom)
+            CustomSSR = 'http://185.238.248.145:10086/ssr/'+str(sub).replace('/','!')+str(custom).split('@@')[0]
         QX = 'http://185.238.248.145:2333/'+str(sub).replace('/','!')+'@STC'
-        return render_template('index.html', Clash = str(Clash),QX = str(QX))
+        return render_template('index.html', Clash = Clash,QX = QX,CustomClash = CustomClash,CustomSSR = CustomSSR,Custom =request.form['custom'] ,sub = sub)
     return render_template('index.html')
 
 if __name__ == '__main__':

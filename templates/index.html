@@ -8,14 +8,25 @@
         <div align="left" style="margin-top:10px;font-size: 15px;">
             <form method="POST" name = "form1">
                 <br/><br/>填入SSR订阅地址:
-                <input type="text" name = "left" placeholder = "填入你的SSR订阅地址" size="100"/> 
+                <input type="text" name = "left" placeholder = "填入你的SSR订阅地址" size="100"  value = "{{ sub }}"/> 
                 <br/><br/>Clash托管地址为：
                 <input type="text" name = "clash" placeholder = "CLash托管地址" readonly="readonly" value = "{{ Clash }}" size="100"/>
                 <br/><br/>QuaX托管地址为：
                 <input type="text" name = "qx" placeholder = "QX托管地址" readonly="readonly" value = "{{ QX }}" size="100"/>
                 <br/><br/>
-                <input type="submit" value = "点击生成托管地址""/><br/><br/>
-                Kris is the best! 更多功能参见群文件：API功能 ! 
+                <input type="submit" value = "点击生成托管地址""/>
+                <br/><br/>
+                <br/><br/>以下功能可实现高度自定义，小白忽略:
+                <br/><br/>填入想要的节点:
+                <input type="text" name = "custom" placeholder = "填入客制化需求" size="100" value = "{{ Custom }}"/>                 
+                <br/><br/>客制化Clash托管地址为：
+                <input type="text" name = "customclash" placeholder = "客制化CLash托管地址" readonly="readonly" value = "{{ CustomClash }}" size="100"/>
+                <br/><br/>客制化SSR订阅地址为：
+                <input type="text" name = "ssr" placeholder = "客制化SSR订阅地址" readonly="readonly" value = "{{ CustomSSR }}" size="100"/>
+                <br/><br/>
+                <input type="submit" value = "点击生成客制化托管地址""/>
+                <br/><br/>
+                Kris is the best! 客制化功能参见群文件：API功能 ! CFW建议关闭系统代理，浏览器安装SwitchyOmega插件。
             </form>
         </div>
     </body>
