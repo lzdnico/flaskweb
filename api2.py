@@ -2,8 +2,6 @@
 import sys
 import flask_restful
 from flask import Flask
-from flask import render_template
-from flask import request
 import  base64
 import  re
 import  requests
@@ -12,6 +10,8 @@ import urllib
 import urllib.parse
 import json
 import time
+from flask import render_template
+from flask import request
 urllib3.disable_warnings()
 aff = 'STC可用，注册地址：tokyo-hot.stchks.com/auth/register?code=gzI5'
 
@@ -111,6 +111,7 @@ def getrules():             # 自定义规则
 
 def writeRules(sublink,selectfirst):    #策略组及规则
     try:
+        print(sublink)
         other=[]           #节点名list           
         Peoxies = ''       #节点
         data = Retry_request(sublink)    #请求订阅        
@@ -209,6 +210,7 @@ def getcustomssrlink(sublink, flagname):    #客制化ssr订阅
 
 def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规则
     try:
+        print(sublink + 'custom')
         other=[]       
         Peoxies = ''
         noderemark = ''      #用于剔除节点标准
@@ -308,9 +310,11 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
 
 app = Flask(__name__)
 
+
+
 @app.route('/NicoNewBeee/rui')
 def rui():
-    requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text=she_see_me')
+    #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text=she_see_me')
     text = Retry_request('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/getupdates')
     return str(text).split('/she')[-1].split('"')[0]
 
@@ -373,5 +377,30 @@ def index():
         return render_template('index.html', Clash = Clash,QX = QX,CustomClash = CustomClash,CustomSSR = CustomSSR,Custom =request.form['custom'] ,sub = sub)
     return render_template('index.html')
 
+
+@app.route('/clashr/nico', methods=['GET', 'POST'])
+def search():
+    try:
+        sub = request.args.get('sub')
+        print(sub)
+        try:
+            arg = request.args.get('selectfirst')
+        except Exception as e:
+            arg = 'no'
+        print(arg)
+        try:
+            custom = request.args.get('custom')
+        except Exception as e:
+            custom = ''
+        print(custom)
+        if custom == None :
+            return writeRules(sub,arg)
+        else :
+            return  writeRulescustom(sub,custom,arg)
+
+    except Exception as e:
+        return '请调用格式适合正确'+ aff
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=False,port=10086)
+    # :  @R0zR*j#xri5
+    app.run(host='0.0.0.0',debug=True,port=10086)
