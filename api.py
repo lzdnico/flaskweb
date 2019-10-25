@@ -136,8 +136,7 @@ def writeRules(sublink,selectfirst):    #策略组及规则
         #'- { name: "延迟最低", type: "url-test", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 600'+ '}\n'\
         if selectfirst == 'yes':             #是否修改代理模式默认顺序，默认为故障切换在前
             ProxyGroup='\n\nProxy Group:\n\n'\
-                    '- { name: "代理模式", type: select, proxies: ["手动选择","故障切换","负载均衡","DIRECT"] }\n'\
-                    '- { name: "负载均衡", type: "load-balance", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
+                    '- { name: "代理模式", type: select, proxies: ["手动选择","故障切换","DIRECT"] }\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
@@ -151,8 +150,7 @@ def writeRules(sublink,selectfirst):    #策略组及规则
                     'Rule:\n'
         else :
             ProxyGroup='\n\nProxy Group:\n\n'\
-                    '- { name: "代理模式", type: select, proxies: [ "故障切换","手动选择","负载均衡","DIRECT"] }\n'\
-                    '- { name: "负载均衡", type: "load-balance", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
+                    '- { name: "代理模式", type: select, proxies: [ "故障切换","手动选择","DIRECT"] }\n'\
                     '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
@@ -274,8 +272,7 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
         proxy1 = proxy[1:-1]
         if selectfirst == 'yes':
             ProxyGroup='\n\nProxy Group:\n\n'\
-                    '- { name: "代理模式", type: select, proxies: ["手动选择","故障切换","负载均衡","DIRECT"] }\n'\
-                    '- { name: "负载均衡", type: "load-balance", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
+                    '- { name: "代理模式", type: select, proxies: ["手动选择","故障切换","DIRECT"] }\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
@@ -289,8 +286,7 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                     'Rule:\n'
         else :
             ProxyGroup='\n\nProxy Group:\n\n'\
-                    '- { name: "代理模式", type: select, proxies: [ "故障切换","手动选择","负载均衡","DIRECT"] }\n'\
-                    '- { name: "负载均衡", type: "load-balance", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
+                    '- { name: "代理模式", type: select, proxies: [ "故障切换","手动选择","DIRECT"] }\n'\
                     '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
