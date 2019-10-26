@@ -17,15 +17,7 @@
 - DOMAIN-SUFFIX,nflximg.net,Netflix
 - DOMAIN-SUFFIX,nflxso.net,Netflix
 - DOMAIN-SUFFIX,nflxvideo.net,Netflix
-- IP-CIDR,23.246.0.0/18,Netflix
-- IP-CIDR,37.77.184.0/21,Netflix
-- IP-CIDR,45.57.0.0/17,Netflix
-- IP-CIDR,64.120.128.0/17,Netflix
-- IP-CIDR,66.197.128.0/17,Netflix
-- IP-CIDR,108.175.32.0/20,Netflix
-- IP-CIDR,192.173.64.0/18,Netflix
-- IP-CIDR,198.38.96.0/19,Netflix
-- IP-CIDR,198.45.48.0/20,Netflix
+
 # Unbreak
 # > Firebase Cloud Messaging
 - DOMAIN,mtalk.google.com,DIRECT
@@ -1316,6 +1308,17 @@
 - IP-CIDR,54.173.34.141/32,代理模式
 - IP-CIDR,54.235.23.242/32,代理模式
 - IP-CIDR,169.45.248.118/32,代理模式
+
+# > NF
+- IP-CIDR,23.246.0.0/18,Netflix
+- IP-CIDR,37.77.184.0/21,Netflix
+- IP-CIDR,45.57.0.0/17,Netflix
+- IP-CIDR,64.120.128.0/17,Netflix
+- IP-CIDR,66.197.128.0/17,Netflix
+- IP-CIDR,108.175.32.0/20,Netflix
+- IP-CIDR,192.173.64.0/18,Netflix
+- IP-CIDR,198.38.96.0/19,Netflix
+- IP-CIDR,198.45.48.0/20,Netflix
 # > WhatsApp
 - IP-CIDR,3.123.36.126/32,代理模式
 - IP-CIDR,35.157.215.84/32,代理模式
