@@ -7,7 +7,7 @@
     <body>
         <div align="left" style="margin-top:10px;font-size: 15px;">
             <form method="POST" name = "form1">
-                <br/><br/>填入SSR订阅地址:
+                填入SSR订阅地址:
                 <input type="text" name = "left" placeholder = "填入你的SSR订阅地址" size="100"  value = "{{ sub }}"/> 
                 <br/><br/>Clash托管地址为：
                 <input type="text" name = "clash" placeholder = "CLash托管地址" readonly="readonly" value = "{{ Clash }}" size="100"/>
@@ -16,7 +16,17 @@
                 <br/><br/>
                 <input type="submit" value = "点击生成托管地址""/>
                 <br/><br/>
-                <br/><br/>以下功能可实现高度自定义，小白忽略:
+                基础功能说明：  
+                <br/>
+                1.首先在《填入SSR订阅地址》输入订阅地址例如：http://stc-dns/ma
+                <br/>
+                2.点击《点击生成托管地址》按钮，即可得到对应的Clash托管地址、QX托管地址。  
+                <br/>
+                3.其中Clash托管地址的代理模式默认故障切换在前，如果想要代理模式手动选择在前，可以手动把地址最后部分的：no修该为yes
+                <br/><br/>
+                ==========================================================================
+                <br/><br/>
+                以下为高级功能，小白忽略
                 <br/><br/>填入想要的节点:
                 <input type="text" name = "custom" placeholder = "例如：@香港&1倍@美国@PPCW 即：只获取香港的1倍节点，美国节点，PPCW节点" size="100" value = "{{ Custom }}"/>                 
                 <br/><br/>客制化Clash托管地址为：
@@ -24,9 +34,15 @@
                 <br/><br/>客制化SSR订阅地址为：
                 <input type="text" name = "ssr" placeholder = "客制化SSR订阅地址" readonly="readonly" value = "{{ CustomSSR }}" size="100"/>
                 <br/><br/>
-                <input type="submit" value = "点击生成客制化托管地址""/>
+                <input type="submit" value = "点击生成客制化托管地址""/>        
                 <br/><br/>
-                Kris is the best! 客制化功能参见群文件：API功能 ! CFW建议关闭系统代理，浏览器安装SwitchyOmega插件。
+                客制化功能说明：
+                <br/>
+                1.首先在《填入SSR订阅地址》输入订阅地址例如：http://stc-dns/ma
+                <br/>
+                2.比如你需要香港的DMIT、美国、负载均衡的2倍节点。则在《填入想要的节点》输入：@香港&DMIT@美国@负载均衡&二倍
+                <br/>
+                3.点击《点击生成客制化托管地址》按钮，即可得到对应的Clash托管地址、SSR订阅地址。
             </form>
         </div>
     </body>

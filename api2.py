@@ -329,6 +329,9 @@ def rui():
     text = Retry_request('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/getupdates')
     return str(text).split('/she')[-1].split('"')[0]
 
+
+
+
 @app.route('/ssr/<name>',methods=['GET'])
 def ssrlink(name):
     requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了你的SSR_API : \n'+name.replace('!','/')))
@@ -371,6 +374,8 @@ def get(name):
     else :
         return aff
     
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
@@ -378,7 +383,7 @@ def index():
         custom = urllib.parse.quote(request.form['custom'])
         Clash = 'http://185.238.248.145:10086/clashr/nico?sublink='+str(sub)+'&selectfirst=no'
         if custom == '':
-             CustomClash = '请填入想要的节点，假设想要香港就@香港，假设想要香港的2倍节点就@香港&2倍。支持多个@'
+             CustomClash = '假设想要香港就@香港，假设想要香港的2倍节点就@香港&2倍。支持多个@即：@PCCW@CMHK@香港&2倍'
              CustomSSR =   '请填入想要的节点，同上'
         else:
             CustomClash = 'http://185.238.248.145:10086/clashr/nico?sublink='+str(sub)+'&custom='+str(custom)+'&selectfirst=no'
