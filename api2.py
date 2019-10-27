@@ -90,6 +90,20 @@ def getnodeR(s):             #获取节点信息
 
     return config
 
+def getqxrules(subs,tags):             # 自定义规则
+    
+    try:
+        rule = Retry_request('https://raw.githubusercontent.com/lzdnico/SSRClash/master/qxconfig')        #请求规则_神机规则
+        rules = str(rule).split('下方粘贴你的订阅链接')
+        subs = str(subs).split('@')
+        tags = str(tags).split('@')
+        for i in range(len(subs)):
+            rules[0] += '\n' + subs[i] + ', tag=' +  tags[i] + ', enabled=true'
+        return rules[0] + rules[1]
+        
+    except Exception as e:
+        print(e)
+
 def getrules():             # 自定义规则
     
     try:
@@ -111,7 +125,6 @@ def getrules():             # 自定义规则
 
 def writeRules(sublink,selectfirst):    #策略组及规则
     try:
-        print(sublink)
         other=[]           #节点名list           
         Peoxies = ''       #节点
         data = Retry_request(sublink)    #请求订阅        
@@ -310,8 +323,6 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
 
 app = Flask(__name__)
 
-
-
 @app.route('/NicoNewBeee/rui')
 def rui():
     #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text=she_see_me')
@@ -377,11 +388,10 @@ def index():
         return render_template('index.html', Clash = Clash,QX = QX,CustomClash = CustomClash,CustomSSR = CustomSSR,Custom =request.form['custom'] ,sub = sub)
     return render_template('index.html')
 
-
 @app.route('/clashr/nico', methods=['GET', 'POST'])
-def search():
+def clashapi():
     try:
-        sub = request.args.get('sub')
+        sub = request.args.get('sublink')
         print(sub)
         try:
             arg = request.args.get('selectfirst')
@@ -389,18 +399,29 @@ def search():
             arg = 'no'
         print(arg)
         try:
-            custom = request.args.get('custom')
+            custom = request.args.get('custom').replace('!','&')
         except Exception as e:
             custom = ''
         print(custom)
-        if custom == None :
+        if custom == '' :
             return writeRules(sub,arg)
         else :
             return  writeRulescustom(sub,custom,arg)
+    except Exception as e:
+        return '检测调用格式是否正确'+ aff
+
+@app.route('/qx/nico', methods=['GET', 'POST'])
+def search():
+    try:
+        sub = request.args.get('sublink').replace('!','&')              
+        print(sub)
+        tag=request.args.get('tag')
+        print(tag)
+        return  getqxrules(sub,tag)
 
     except Exception as e:
-        return '请调用格式适合正确'+ aff
+        return '请调用格式适合正确'
 
 if __name__ == '__main__':
     # :  @R0zR*j#xri5
-    app.run(host='0.0.0.0',debug=True,port=10086)
+    app.run(host='0.0.0.0',debug=False,port=10086)

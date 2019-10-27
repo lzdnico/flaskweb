@@ -23,7 +23,7 @@ def Retry_request(url): #远程下载
             i = i +1
             print('重新下载：'+url)
 
-def getrules(subs,tags):             # 自定义规则
+def getqxrules(subs,tags):             # 自定义规则
     
     try:
         rule = Retry_request('https://raw.githubusercontent.com/lzdnico/SSRClash/master/qxconfig')        #请求规则_神机规则
@@ -63,7 +63,7 @@ def get(name):
             tags.append(link.split('@')[1])
         except Exception as e:
             tags.append('傻吊家的节点')    
-    return getrules(subs,tags)
+    return getqxrules(subs,tags)
     
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=False,port=2333)
