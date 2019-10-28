@@ -1,16 +1,20 @@
 # coding=utf-8
 import sys
-from flask import Flask
 import flask_restful
+from flask import Flask
+from flask import render_template
+from flask import request
 import  base64
 import  re
 import  requests
 import urllib3
+import urllib
+import urllib.parse
 import json
 import time
 urllib3.disable_warnings()
+aff = 'STC可用，注册地址：tokyo-hot.stchks.com/auth/register?code=gzI5'
 
-aff = 'STC可用，注册地址：prohub.stchks.com/auth/register?code=gzI5'
 
 def safe_base64_decode(s): # 解码
     try:
@@ -90,12 +94,13 @@ def getrules():             # 自定义规则
     
     try:
         finalrules=[]
-        rules = Retry_request('https://raw.githubusercontent.com/ConnersHua/Profiles/master/Clash/Pro.yaml')        #请求规则_神机规则
-        p_rule= Retry_request('https://raw.githubusercontent.com/lzdnico/ToClash/master/General.yml')               #基础规则_默认不配置DNS
-        #p_rule=rules.split('Proxy:')[0]                                                                            #基础规则_默认配置DNS,与上面二选一
-        l_rule =  rules.split('Rule:\n')[1].replace('ForeignMedia','国际媒体').replace('DomesticMedia','国内媒体').replace('Hijacking','恶意网站').replace('Final','漏网之鱼').replace('PROXY','代理模式')
-        nf_rule = l_rule.split('# > Netflix\n')[1].split('# > PBS\n')[0].replace('国际媒体','Netflix')
-        l_rule = nf_rule+l_rule
+        
+        with open("./general.yml", "r",encoding = 'utf-8') as f:
+            p_rule = f.read() + '\n'
+
+        with open("./lrules.yml", "r",encoding = 'utf-8') as f:
+            l_rule = f.read()        
+        
         Peoxies = 'Proxy:\n'
         finalrules.append(p_rule)
         finalrules.append(Peoxies)
@@ -133,8 +138,10 @@ def writeRules(sublink,selectfirst):    #策略组及规则
             ProxyGroup='\n\nProxy Group:\n\n'\
                     '- { name: "代理模式", type: select, proxies: ["手动选择","故障切换","DIRECT"] }\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
-                    '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 600'+ '}\n'\
+                    '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国际媒体", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式","手动选择"] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
@@ -143,10 +150,12 @@ def writeRules(sublink,selectfirst):    #策略组及规则
                     'Rule:\n'
         else :
             ProxyGroup='\n\nProxy Group:\n\n'\
-                    '- { name: "代理模式", type: select, proxies: ["故障切换","手动选择","DIRECT"] }\n'\
-                    '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 600'+ '}\n'\
+                    '- { name: "代理模式", type: select, proxies: [ "故障切换","手动选择","DIRECT"] }\n'\
+                    '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "动画疯", type: select, proxies:  ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国际媒体", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式","手动选择"] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
@@ -265,8 +274,10 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
             ProxyGroup='\n\nProxy Group:\n\n'\
                     '- { name: "代理模式", type: select, proxies: ["手动选择","故障切换","DIRECT"] }\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
-                    '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 600'+ '}\n'\
+                    '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国际媒体", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式","手动选择"] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
@@ -276,15 +287,17 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
         else :
             ProxyGroup='\n\nProxy Group:\n\n'\
                     '- { name: "代理模式", type: select, proxies: [ "故障切换","手动选择","DIRECT"] }\n'\
-                    '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 600'+ '}\n'\
+                    '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "动画疯", type: select, proxies:  ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国际媒体", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式","手动选择"] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
                     '- { name: "Apple", type: select, proxies: ["DIRECT", "代理模式"] }\n'\
                     '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT"] }\n\n\n'\
-                    'Rule:\n'            
+                    'Rule:\n'             
         rules = getrules()        
         currenttime = '# 更新时间为（看分钟就行，不知道哪个时区）：'+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'\n'
         content = currenttime+rules[0]+rules[1]+Peoxies+ProxyGroup+rules[2]
@@ -294,16 +307,6 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
             return aff
 
 app = Flask(__name__)
-
-@app.route('/')
-def my():
-    #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text=有傻吊调用了你的API')
-    return 'STC API 使用教程：<br/><br/>'\
-        '假设你的订阅地址为：https://stc-dns.com/link/Mzke <br/><br/>'\
-        '修改Clash托管地址为：http://api.niconewbeee.tk:10086/https:!!stc-dns.com!link!Mzke <br/><br/>' \
-        'PS: 把SSR订阅地址中的   /   改为   ！ <br/><br/><br/> '\
-        'API的使用以及更多功能请参考群文件：API功能<br/><br/>' \
-        'Kris is Best. 注册地址：'+ aff
 
 @app.route('/NicoNewBeee/rui')
 def rui():
@@ -327,7 +330,7 @@ def ssrlink(name):
     else :
         return aff
 
-@app.route('/<name>',methods=['GET'])
+@app.route('/clash/<name>',methods=['GET'])
 def get(name):
     name = name.replace('!','/')
     requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了你的Clash_API : \n'+name))
@@ -353,5 +356,22 @@ def get(name):
     else :
         return aff
     
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == "POST":
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n'))
+        sub = request.form['left']
+        custom = urllib.parse.quote(request.form['custom'])
+        Clash = 'http://185.238.248.145:10086/clash/'+str(sub).replace('/','!')
+        if custom == '':
+             CustomClash = '请填入想要的节点，假设想要香港就@香港，假设想要香港的2倍节点就@香港&2倍。支持多个@'
+             CustomSSR =   '请填入想要的节点，同上'
+        else:
+            CustomClash = 'http://185.238.248.145:10086/clash/'+str(sub).replace('/','!')+str(custom)
+            CustomSSR = 'http://185.238.248.145:10086/ssr/'+str(sub).replace('/','!')+str(custom).split('@@')[0]
+        QX = 'http://185.238.248.145:2333/'+str(sub).replace('/','!')+'@STC'
+        return render_template('index.html', Clash = Clash,QX = QX,CustomClash = CustomClash,CustomSSR = CustomSSR,Custom =request.form['custom'] ,sub = sub)
+    return render_template('index.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=False,port=10086)

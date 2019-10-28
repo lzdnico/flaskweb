@@ -1,0 +1,60 @@
+#default configure
+#Update Date: 2019-10-25 16:32:07 +0000
+#author: iPhone
+
+[General]
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,e.crashlynatics.com
+bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.18.0.0/15,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32
+dns-server = system,119.29.29.29,223.5.5.5
+allow-udp-proxy = false
+host = 127.0.0.1
+
+[Proxy]
+ss = Shadowsocks,111.111.1.1,8389,chacha20,"ceshiceshi"
+
+
+[Remote Proxy]
+# 在[server_remote] 下方粘贴你的订阅链接
+
+[Proxy Group]
+# API标志位1
+Telegram = select,PROXY,DIRECT
+Apple = select,PROXY,DIRECT
+Advertising = select,REJECT,DIRECT
+Hijacking = select,REJECT,DIRECT
+
+[Remote Rule]
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Surge/Ruleset/Unbreak.list,DIRECT
+
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Surge/Ruleset/Advertising.list,Advertising
+
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Surge/Ruleset/Telegram.list,Telegram
+
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Surge/Ruleset/Global.list,PROXY
+
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Surge/Ruleset/Apple.list,Apple
+
+https://raw.githubusercontent.com/ConnersHua/Profiles/master/Surge/Ruleset/China.list,DIRECT
+
+
+[Rule]
+#Type:DOMAIN-SUFFIX,DOMAIN,DOMAIN-KEYWORD,IP-CIDR
+#Strategy:DIRECT,Proxy,REJECT
+#Options:force-remote-dns(Default:false),no-resolve
+
+GEOIP,cn,DIRECT
+FINAL,PROXY
+
+[Url Rewrite]
+enable = false
+
+^http://www.google.cn http://www.google.com header
+^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
+^https?:\/\/(www.)?taobao\.com\/ https://taobao.com/ 302
+^https?:\/\/(www.)?jd\.com\/ https://www.jd.com/ 302
+^https?:\/\/(www.)?mi\.com\/ https://www.mi.com/ 302
+^https?:\/\/you\.163\.com\/ https://you.163.com/ 302
+^https?:\/\/(www.)?suning\.com/ https://suning.com/ 302
+
+[MITM]
+enable = false
