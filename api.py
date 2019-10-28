@@ -382,7 +382,7 @@ def loonapi():
         #print(sub)
         tag=request.args.get('tag')
         #print(tag)
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_SSRAPI : \n'+sub+tag))
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_LoonAPI : \n'+sub+tag))
         return  api.loon.getrules(sub,tag)
     except Exception as e:
         return '请调用格式适合正确'
