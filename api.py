@@ -13,7 +13,7 @@ import api.qx
 import api.loon
 from flask import Flask,render_template,request
 urllib3.disable_warnings()
-aff = 'STC可用，注册地址：tokyo-hot.stchks.com/auth/register?code=gzI5'
+aff = 'STC可用，注册地址：warning.stchks.com/auth/register?code=gzI5'
 
 def safe_base64_decode(s): # 解码
     try:
@@ -119,15 +119,17 @@ def writeRules(sublink,selectfirst):    #策略组及规则
             nodeR = getnodeR(ssrlink)
             remark = nodeR['remark']                                
             if "30倍" in remark:  #用于剔除高倍率节点
-                continue
+                continue            
+            """
             if nodeR['protocol_param'] == '' and  nodeR['obfs_param'] == '':    #判断是否为ssr
                 if nodeR['method'] == 'none':
                     continue
                 Json={ 'name': remark, 'type': 'ss', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
                 'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'obfs': nodeR['obfs'] }
             else:
-                Json={ 'name': remark, 'type': 'ssr', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
-                  'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'protocolparam': nodeR['protocol_param'], 'obfs': nodeR['obfs'], 'obfsparam': nodeR['obfs_param'] }
+            """
+            Json={ 'name': remark, 'type': 'ssr', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
+                'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'protocolparam': nodeR['protocol_param'], 'obfs': nodeR['obfs'], 'obfsparam': nodeR['obfs_param'] }
             Peoxies +='- '+str(Json)+'\n'    #节点加加
             other.insert(0,remark)           #节点名list加加
         proxy = str(other)                   #节点名转化为字符串
@@ -249,22 +251,14 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                         else :
                             continue
                     else :                         #每组是否有多个匹配要求   @香港&1倍@美国     适用 美国这组
-                        if nodeR['protocol_param'] == '' and  nodeR['obfs_param'] == '':
-                            if nodeR['method'] == 'none':
-                                continue
-                            Json={ 'name': remark, 'type': 'ss', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
-                            'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'obfs': nodeR['obfs'] }
+                        if remark in noderemark:
+                            continue
+                        else:
+                            Json={ 'name': remark, 'type': 'ssr', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
+                                'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'protocolparam': nodeR['protocol_param'], 'obfs': nodeR['obfs'], 'obfsparam': nodeR['obfs_param'] }
+                            noderemark += remark
                             Peoxies +='- '+str(Json)+'\n'
                             other.insert(0,remark)
-                        else:
-                            if remark in noderemark:
-                                continue
-                            else:
-                                Json={ 'name': remark, 'type': 'ssr', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
-                                'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'protocolparam': nodeR['protocol_param'], 'obfs': nodeR['obfs'], 'obfsparam': nodeR['obfs_param'] }
-                                noderemark += remark
-                                Peoxies +='- '+str(Json)+'\n'
-                                other.insert(0,remark)
                 else:                              #每组第一个不匹配
                     continue
 
