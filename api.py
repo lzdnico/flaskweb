@@ -117,9 +117,10 @@ def writeRules(sublink,selectfirst):    #策略组及规则
         for i in range(len(ssrdata)):                                                   #遍历节点            
             ssrlink = safe_base64_decode(ssrdata[i].replace('ssr://','').replace('\r',''))
             nodeR = getnodeR(ssrlink)
-            remark = nodeR['remark']                                
-            if "30倍" in remark:  #用于剔除高倍率节点
-                continue            
+            remark = nodeR['remark']   
+
+            #if "30倍" in remark:  #用于剔除高倍率节点
+                #continue            
             """
             if nodeR['protocol_param'] == '' and  nodeR['obfs_param'] == '':    #判断是否为ssr
                 if nodeR['method'] == 'none':
@@ -182,8 +183,8 @@ def getcustomssrlink(sublink, flagname):    #客制化ssr订阅
             ssrlink = safe_base64_decode(ssrdata[i].replace('ssr://','').replace('\r',''))
             nodeR = getnodeR(ssrlink)
             remark = nodeR['remark']                                
-            if "30倍" in remark:        #用于剔除高倍率节点
-                continue
+            #if "30倍" in remark:        #用于剔除高倍率节点
+                # continue
             for flag in flags:          #遍历节点匹配
                 if flag == '' :         #滤掉无效匹配请求
                     continue
@@ -222,8 +223,8 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
             ssrlink = safe_base64_decode(ssrdata[i].replace('ssr://','').replace('\r',''))
             nodeR = getnodeR(ssrlink)
             remark = nodeR['remark']                                
-            if "30倍" in remark:  #用于剔除高倍率节点
-                continue
+            #if "30倍" in remark:  #用于剔除高倍率节点
+                #continue
             for flag in flags:     #遍历分组匹配规则
                 if flag == '':
                     continue
