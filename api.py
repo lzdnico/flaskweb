@@ -114,13 +114,14 @@ def writeRules(sublink,selectfirst):    #策略组及规则
         Peoxies = ''       #节点
         data = Retry_request(sublink)    #请求订阅        
         ssrdata=safe_base64_decode(data).strip().split('\n')              
+        
         for i in range(len(ssrdata)):                                                   #遍历节点            
             ssrlink = safe_base64_decode(ssrdata[i].replace('ssr://','').replace('\r',''))
             nodeR = getnodeR(ssrlink)
             remark = nodeR['remark']                                
             if "30倍" in remark:  #用于剔除高倍率节点
                 continue
-            if nodeR['protocol_param'] == '' and  nodeR['obfs_param'] == '':    #判断是否为ssr
+            if nodeR['protocol_param'] == '' and  nodeR['obfs_param'] == '' and nodeR['protocol'] == 'origin' and nodeR['obfs'] == 'plain':    #判断是否为ssr
                 if nodeR['method'] == 'none':
                     continue
                 Json={ 'name': remark, 'type': 'ss', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
@@ -130,6 +131,7 @@ def writeRules(sublink,selectfirst):    #策略组及规则
                   'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'protocolparam': nodeR['protocol_param'], 'obfs': nodeR['obfs'], 'obfsparam': nodeR['obfs_param'] }
             Peoxies +='- '+str(Json)+'\n'    #节点加加
             other.insert(0,remark)           #节点名list加加
+        
         proxy = str(other)                   #节点名转化为字符串
         proxy1 = proxy[1:-1]                 #节点名字符串去掉中括号
         #'- { name: "延迟最低", type: "url-test", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 600'+ '}\n'\
@@ -161,6 +163,7 @@ def writeRules(sublink,selectfirst):    #策略组及规则
                     '- { name: "Apple", type: select, proxies: ["DIRECT", "代理模式"] }\n'\
                     '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT"] }\n\n\n'\
                     'Rule:\n'           
+        
         rules = getrules()   #获取分流规则       
         currenttime = '# 更新时间为（看分钟就行，不知道哪个时区）：'+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'\n' #获取更新时间
         content = currenttime+rules[0]+rules[1]+Peoxies+ProxyGroup+rules[2]
@@ -216,12 +219,15 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
         ssrdata=safe_base64_decode(data).strip().split('\n')  
         flags = flagname.split('@')
         #ssrdata = data.strip().replace('==','').split('\n')            
+        
         for i in range(len(ssrdata)):          #遍历节点                                         #节点组            
             ssrlink = safe_base64_decode(ssrdata[i].replace('ssr://','').replace('\r',''))
             nodeR = getnodeR(ssrlink)
             remark = nodeR['remark']                                
+            
             if "30倍" in remark:  #用于剔除高倍率节点
                 continue
+            
             for flag in flags:     #遍历分组匹配规则
                 if flag == '':
                     continue
@@ -241,15 +247,26 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                             if remark in noderemark:
                                 continue
                             else:
-                                Json={ 'name': remark, 'type': 'ssr', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
-                                'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'protocolparam': nodeR['protocol_param'], 'obfs': nodeR['obfs'], 'obfsparam': nodeR['obfs_param'] }
-                                noderemark += remark
-                                Peoxies +='- '+str(Json)+'\n'
-                                other.insert(0,remark)
+                                if nodeR['protocol_param'] == '' and  nodeR['obfs_param'] == '' and nodeR['protocol'] == 'origin' and nodeR['obfs'] == 'plain':    #判断是否为ssr
+                                    if nodeR['method'] == 'none':
+                                        continue
+                                    Json={ 'name': remark, 'type': 'ss', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
+                                    'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'obfs': nodeR['obfs'] }
+                                    Peoxies +='- '+str(Json)+'\n'
+                                    other.insert(0,remark)
+                                else:
+                                    if remark in noderemark:
+                                        continue
+                                    else:
+                                        Json={ 'name': remark, 'type': 'ssr', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
+                                        'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'protocolparam': nodeR['protocol_param'], 'obfs': nodeR['obfs'], 'obfsparam': nodeR['obfs_param'] }
+                                        noderemark += remark
+                                        Peoxies +='- '+str(Json)+'\n'
+                                        other.insert(0,remark)                                
                         else :
                             continue
                     else :                         #每组是否有多个匹配要求   @香港&1倍@美国     适用 美国这组
-                        if nodeR['protocol_param'] == '' and  nodeR['obfs_param'] == '':
+                        if nodeR['protocol_param'] == '' and  nodeR['obfs_param'] == '' and nodeR['protocol'] == 'origin' and nodeR['obfs'] == 'plain':    #判断是否为ssr
                             if nodeR['method'] == 'none':
                                 continue
                             Json={ 'name': remark, 'type': 'ss', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
@@ -386,5 +403,6 @@ def loonapi():
         return  api.loon.getrules(sub,tag)
     except Exception as e:
         return '请调用格式适合正确'
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=False,port=10086)            #自定义端口
