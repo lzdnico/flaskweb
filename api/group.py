@@ -190,7 +190,7 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                 else:                              #每组第一个不匹配
                     continue
 
-        print(groups)  
+        #print(groups)  
         clashgroup = '\n'
         clashname = ''
         for i in range(len(groups)):
@@ -199,15 +199,15 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
             clashgroup  += '- { '+'name: "{name}故障切换", type: "fallback", "proxies": '.format(name=str(flags[i])) + str(groups[i]) + ', url: "http://www.gstatic.com/generate_204", interval: 450 }\n'
             clashname += '"{name}故障切换",'.format(name=str(flags[i]))
         clashname = clashname[:-1]
-        print(clashgroup)
-        print(clashname)
+        #print(clashgroup)
+        #print(clashname)
 
         proxy = str(other)
         proxy1 = proxy[1:-1]
         if selectfirst == 'yes':
             ProxyGroup='\n\nProxy Group:\n\n' + clashgroup + \
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
-                    '- { name: "代理模式", type: select, proxies: [ "手动选择","DIRECT",'+ clashname+'] }\n'\
+                    '- { name: "代理模式", type: select, proxies: [ "手动选择",'  + clashname +  ', "DIRECT",] }\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
                     '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "动画疯", type: select, proxies:  ["代理模式",'+proxy1+'] }\n'\
@@ -220,7 +220,7 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
         else :
             ProxyGroup='\n\nProxy Group:\n\n' + clashgroup + \
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
-                    '- { name: "代理模式", type: select, proxies: [ '+ clashname +'"手动选择","DIRECT"] }\n'\
+                    '- { name: "代理模式", type: select, proxies: [ '  + clashname +  ',"手动选择","DIRECT"] }\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
                     '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "动画疯", type: select, proxies:  ["代理模式",'+proxy1+'] }\n'\
