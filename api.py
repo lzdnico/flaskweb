@@ -387,7 +387,7 @@ def clashapitest():
         except Exception as e:
             custom = ''
         #print(custom)
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_ClashAPI : \n'+sub+' :'+str(custom)))
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_Clash分组API : \n'+sub+' :'+str(custom)))
         if custom == '' or custom == None :
             return writeRules(sub,arg)
         else :
