@@ -201,11 +201,11 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
             ProxyGroup='\n\nProxy Group:\n\n' + clashgroup + \
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "代理模式", type: select, proxies: ["手动选择",'  + clashname + ', "DIRECT",] }\n'\
-                    '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式",'+ clashname + proxy1 +'] }\n'\
+                    '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
+                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
+                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
+                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式",'+ clashname +','+ proxy1 +'] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
                     '- { name: "Apple", type: select, proxies: ["DIRECT", "代理模式"] }\n'\
                     '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT"] }\n\n\n'\
@@ -214,11 +214,11 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
             ProxyGroup='\n\nProxy Group:\n\n' + clashgroup + \
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "代理模式", type: select, proxies: [ '+ clashname +  ',"手动选择","DIRECT"] }\n'\
-                    '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式",'+ clashname + proxy1 +'] }\n'\
+                    '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
+                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
+                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
+                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式",'+ clashname +','+ proxy1 +'] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
                     '- { name: "Apple", type: select, proxies: ["DIRECT", "代理模式"] }\n'\
                     '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT"] }\n\n\n'\
