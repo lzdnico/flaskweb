@@ -7,10 +7,8 @@ import  urllib3
 import  urllib
 import  json
 import  time
+import  api.aff
 urllib3.disable_warnings()
-
-#全局变量定义
-aff = 'STC可用，注册地址：bilibili.stchk.cloud/auth/register?code=gzI5'
 
 def safe_base64_decode(s): # 解码
     try:
@@ -139,4 +137,4 @@ def getcustomssrlink(sublink, flagname):    #客制化ssr订阅
         customssr = safe_base64_encode(customssr)   #base64加密
         return customssr
     except Exception as e:
-            return aff
+            return api.aff.aff

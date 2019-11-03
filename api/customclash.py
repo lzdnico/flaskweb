@@ -7,10 +7,8 @@ import  urllib3
 import  urllib
 import  json
 import  time
+import  api.aff
 urllib3.disable_warnings()
-
-#全局变量定义
-aff = 'STC可用，注册地址：bilibili.stchk.cloud/auth/register?code=gzI5'
 
 def safe_base64_decode(s): # 解码
     try:
@@ -217,4 +215,4 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
         return content
 
     except Exception as e:
-            return aff
+            return api.aff.aff
