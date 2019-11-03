@@ -114,21 +114,23 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
         data = Retry_request(sublink)    #请求订阅        
         ssrdata=safe_base64_decode(data).strip().split('\n')  
         flags = flagname.split('@')
-        #ssrdata = data.strip().replace('==','').split('\n')     
-        groups = [[] for _ in range(len(flags))]
-        print(groups)
-
+        #ssrdata = data.strip().replace('==','').split('\n')            
+        
         for i in range(len(ssrdata)):          #遍历节点                                         #节点组            
             ssrlink = safe_base64_decode(ssrdata[i].replace('ssr://','').replace('\r',''))
             nodeR = getnodeR(ssrlink)
-            remark = nodeR['remark']                                              
-            for i in range(len(flags)):     #遍历分组匹配规则
-                if flags[i] == '':
+            remark = nodeR['remark']                                
+            
+            if "30倍" in remark:  #用于剔除高倍率节点
+                continue
+            
+            for flag in flags:     #遍历分组匹配规则
+                if flag == '':
                     continue
-                if flags[i].split('&')[0] in remark:   #每组第一个匹配
-                    if '&' in flags[i]:                #每组是否有多个匹配要求   @香港&1倍@美国     适用 香港&1倍  
+                if flag.split('&')[0] in remark:   #每组第一个匹配
+                    if '&' in flag:                #每组是否有多个匹配要求   @香港&1倍@美国     适用 香港&1倍  
                         inremark = 1
-                        andflags = flags[i].split('&')
+                        andflags = flag.split('&')
                         for andflag in andflags:
                             if andflag == '':
                                 continue
@@ -147,8 +149,7 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                                     Json={ 'name': remark, 'type': 'ss', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
                                     'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'obfs': nodeR['obfs'] }
                                     Peoxies +='- '+str(Json)+'\n'
-                                    groups[i].insert(0,remark)
-                                    other.append(remark)
+                                    other.insert(0,remark)
                                 else:
                                     if remark in noderemark:
                                         continue
@@ -157,8 +158,7 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                                         'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'protocolparam': nodeR['protocol_param'], 'obfs': nodeR['obfs'], 'obfsparam': nodeR['obfs_param'] }
                                         noderemark += remark
                                         Peoxies +='- '+str(Json)+'\n'
-                                        groups[i].insert(0,remark)
-                                        other.append(remark)                                
+                                        other.insert(0,remark)                                
                         else :
                             continue
                     else :                         #每组是否有多个匹配要求   @香港&1倍@美国     适用 美国这组
@@ -168,8 +168,7 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                             Json={ 'name': remark, 'type': 'ss', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
                             'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'obfs': nodeR['obfs'] }
                             Peoxies +='- '+str(Json)+'\n'
-                            groups[i].insert(0,remark)
-                            other.append(remark)
+                            other.insert(0,remark)
                         else:
                             if remark in noderemark:
                                 continue
@@ -178,51 +177,40 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                                 'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'protocolparam': nodeR['protocol_param'], 'obfs': nodeR['obfs'], 'obfsparam': nodeR['obfs_param'] }
                                 noderemark += remark
                                 Peoxies +='- '+str(Json)+'\n'
-                                groups[i].insert(0,remark)
-                                other.append(remark)
+                                other.insert(0,remark)
                 else:                              #每组第一个不匹配
                     continue
-
-        #print(groups)  
-        clashgroup = '\n'
-        clashname = ''
-        for i in range(len(groups)):
-            if i == 0:
-                continue
-            clashgroup  += '- { ' + 'name: "{name}故障切换", type: "fallback", "proxies": '.format(name=str(flags[i]).replace('&','')) + str(groups[i]) + ', url: "http://www.gstatic.com/generate_204", interval: 450 }\n'
-            clashname += '"{name}故障切换",'.format(name=str(flags[i]).replace('&',''))
-        clashname = clashname[:-1]
-        #print(clashgroup)
-        #print(clashname)
 
         proxy = str(other)
         proxy1 = proxy[1:-1]
         if selectfirst == 'yes':
-            ProxyGroup='\n\nProxy Group:\n\n' + clashgroup + \
+            ProxyGroup='\n\nProxy Group:\n\n'\
+                    '- { name: "代理模式", type: select, proxies: ["手动选择","故障切换","DIRECT"] }\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
-                    '- { name: "代理模式", type: select, proxies: ["手动选择",'  + clashname + ', "DIRECT",] }\n'\
-                    '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式",'+ clashname + proxy1 +'] }\n'\
+                    '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
+                    '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式","手动选择"] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
                     '- { name: "Apple", type: select, proxies: ["DIRECT", "代理模式"] }\n'\
                     '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT"] }\n\n\n'\
-                    'Rule:\n'   
+                    'Rule:\n'
         else :
-            ProxyGroup='\n\nProxy Group:\n\n' + clashgroup + \
+            ProxyGroup='\n\nProxy Group:\n\n'\
+                    '- { name: "代理模式", type: select, proxies: [ "故障切换","手动选择","DIRECT"] }\n'\
+                    '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
-                    '- { name: "代理模式", type: select, proxies: [ '+ clashname +  ',"手动选择","DIRECT"] }\n'\
-                    '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+ clashname + proxy1 +'] }\n'\
-                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式",'+ clashname + proxy1 +'] }\n'\
+                    '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "动画疯", type: select, proxies:  ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
+                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式","手动选择"] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
                     '- { name: "Apple", type: select, proxies: ["DIRECT", "代理模式"] }\n'\
                     '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT"] }\n\n\n'\
-                    'Rule:\n'              
+                    'Rule:\n'             
         rules = getrules()        
         currenttime = '# 更新时间为（看分钟就行，不知道哪个时区）：'+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'\n'
         content = currenttime+rules[0]+rules[1]+Peoxies+ProxyGroup+rules[2]
@@ -230,4 +218,3 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
 
     except Exception as e:
             return aff
-
