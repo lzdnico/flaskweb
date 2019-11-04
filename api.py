@@ -16,6 +16,7 @@ import api.customclash
 import api.customssr
 import api.clash
 import api.aff
+import api.groupload
 from flask import Flask,render_template,request
 urllib3.disable_warnings()
 
@@ -111,7 +112,7 @@ def clashapitestload():
         if custom == '' or custom == None :
             return api.clash.writeRules(sub,arg)
         else :
-            return  api.group.writeRulescustom(sub,custom,arg)
+            return  api.groupload.writeRulescustom(sub,custom,arg)
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
 
