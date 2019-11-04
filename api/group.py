@@ -114,7 +114,7 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
         flags = flagname.split('@')
         #ssrdata = data.strip().replace('==','').split('\n')     
         groups = [[] for _ in range(len(flags))]
-        print(groups)
+        #print(groups)
 
         for i in range(len(ssrdata)):          #遍历节点                                         #节点组            
             ssrlink = safe_base64_decode(ssrdata[i].replace('ssr://','').replace('\r',''))
@@ -149,6 +149,7 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                                     other.append(remark)
                                 else:
                                     if remark in noderemark:
+                                        groups[i].insert(0,remark)
                                         continue
                                     else:
                                         Json={ 'name': remark, 'type': 'ssr', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
@@ -170,6 +171,7 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                             other.append(remark)
                         else:
                             if remark in noderemark:
+                                groups[i].insert(0,remark)
                                 continue
                             else:
                                 Json={ 'name': remark, 'type': 'ssr', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
