@@ -136,28 +136,25 @@ def writeRulescustom(sublink,flagname,selectfirst):    #客制化策略组及规
                                 else:
                                     inremark = 0
                         if inremark == 1:
-                            if remark in noderemark:
-                                continue
+                            if nodeR['protocol_param'] == '' and  nodeR['obfs_param'] == '' and nodeR['protocol'] == 'origin' and nodeR['obfs'] == 'plain':    #判断是否为ssr
+                                if nodeR['method'] == 'none':
+                                    continue
+                                Json={ 'name': remark, 'type': 'ss', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
+                                'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'obfs': nodeR['obfs'] }
+                                Peoxies +='- '+str(Json)+'\n'
+                                groups[i].insert(0,remark)
+                                other.append(remark)
                             else:
-                                if nodeR['protocol_param'] == '' and  nodeR['obfs_param'] == '' and nodeR['protocol'] == 'origin' and nodeR['obfs'] == 'plain':    #判断是否为ssr
-                                    if nodeR['method'] == 'none':
-                                        continue
-                                    Json={ 'name': remark, 'type': 'ss', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
-                                    'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'obfs': nodeR['obfs'] }
+                                if remark in noderemark:
+                                    groups[i].insert(0,remark)
+                                    continue
+                                else:
+                                    Json={ 'name': remark, 'type': 'ssr', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
+                                    'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'protocolparam': nodeR['protocol_param'], 'obfs': nodeR['obfs'], 'obfsparam': nodeR['obfs_param'] }
+                                    noderemark += remark
                                     Peoxies +='- '+str(Json)+'\n'
                                     groups[i].insert(0,remark)
-                                    other.append(remark)
-                                else:
-                                    if remark in noderemark:
-                                        groups[i].insert(0,remark)
-                                        continue
-                                    else:
-                                        Json={ 'name': remark, 'type': 'ssr', 'server': nodeR['server'], 'port': nodeR['server_port'], 'password':nodeR['password'] , \
-                                        'cipher': nodeR['method'], 'protocol': nodeR['protocol'], 'protocolparam': nodeR['protocol_param'], 'obfs': nodeR['obfs'], 'obfsparam': nodeR['obfs_param'] }
-                                        noderemark += remark
-                                        Peoxies +='- '+str(Json)+'\n'
-                                        groups[i].insert(0,remark)
-                                        other.append(remark)                                
+                                    other.append(remark)                                
                         else :
                             continue
                     else :                         #每组是否有多个匹配要求   @香港&1倍@美国     适用 美国这组
