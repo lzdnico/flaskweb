@@ -7,19 +7,19 @@
     <body>
         <div align="left" style="margin-top:10px;font-size: 15px;">
             <form method="POST" name = "form1">
-                填入SSR订阅地址:
+                填入SSR订阅地址:&nbsp&nbsp
                 <input type="text" name = "left" placeholder = "填入你的SSR订阅地址" size="100"  value = "{{ sub }}"/> 
                 <br/><br/>Clash托管地址为：
                 <input type="text" name = "clash" placeholder = "CLash托管地址" readonly="readonly" value = "{{ Clash }}" size="100"/>
                 <br/><br/>QuaX托管地址为：
                 <input type="text" name = "qx" placeholder = "QX托管地址" readonly="readonly" value = "{{ QX }}" size="100"/>
-                <br/><br/>Loon托管地址为：
+                <br/><br/>Loon托管地址为：&nbsp
                 <input type="text" name = "loon" placeholder = "Loon托管地址" readonly="readonly" value = "{{ Loon }}" size="100"/>
                 <br/><br/>
                 <input type="submit" value = "点击生成托管地址""/>
                 <br/><br/>
                 基础功能说明：  
-                <br/>
+                <br/><br/>
                 1.首先在《填入SSR订阅地址》输入订阅地址例如：http://stc-dns/ma
                 <br/>
                 2.点击《点击生成托管地址》按钮，即可得到对应的Clash托管地址、QX托管地址。  
@@ -29,24 +29,26 @@
                 ==========================================================================
                 <br/><br/>
                 以下为高级功能，小白忽略
-                <br/><br/>填入想要的节点:
+                <br/><br/>填入想要的节点:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <input type="text" name = "custom" placeholder = "例如：@香港&1倍@美国@PPCW 即：只获取香港的1倍节点，美国节点，PPCW节点" size="100" value = "{{ Custom }}"/>                 
-                <br/><br/>客制化Clash托管地址为：
+                <br/><br/>客制化Clash托管地址为：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <input type="text" name = "customclash" placeholder = "客制化CLash托管地址" readonly="readonly" value = "{{ CustomClash }}" size="100"/>
                 <br/><br/>客制化分组Clash托管地址为：
                 <input type="text" name = "customgroupclash" placeholder = "客制化分组CLash托管地址" readonly="readonly" value = "{{ CustomGroupClash }}" size="100"/>
-                <br/><br/>客制化SSR订阅地址为：
+                <br/><br/>客制化SSR订阅地址为：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <input type="text" name = "ssr" placeholder = "客制化SSR订阅地址" readonly="readonly" value = "{{ CustomSSR }}" size="100"/>
                 <br/><br/>
                 <input type="submit" value = "点击生成客制化托管地址""/>        
                 <br/><br/>
                 客制化功能说明：
+                <br/><br/>
+                1.&nbsp&nbsp首先在《填入SSR订阅地址》输入订阅地址例如：http://stc-dns/ma
                 <br/>
-                1.首先在《填入SSR订阅地址》输入订阅地址例如：http://stc-dns/ma
+                2.《填入想要的节点》 V4示例： @杭港@深港@沪港@新@美@日 &nbsp&nbsp    或者  @杭港&2倍@深港&2倍@沪港&2倍@新@美@日 <br/>
+                2.《填入想要的节点》 V3示例： @美国@日本@香港@台湾 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   或者  @美国@日本@香港&CMHK@台湾<br/>
+                2.&nbsp&nbsp注意所有的参数必须来自节点名称，否则无法匹配。比如V4节点名称没有香港，只有杭港或者沪港，所有V4不能@香港。
                 <br/>
-                2.比如你需要香港的DMIT、美国、负载均衡的2倍节点。则在《填入想要的节点》输入：@香港&DMIT@美国@负载均衡&二倍
-                <br/>
-                3.点击《点击生成客制化托管地址》按钮，即可得到对应的Clash托管地址、SSR订阅地址。
+                3.&nbsp&nbsp点击《点击生成客制化托管地址》按钮，即可得到对应的Clash托管地址、Clash分组托管地址、SSR订阅地址。
             </form>
         </div>
     </body>
