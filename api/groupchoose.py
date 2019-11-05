@@ -203,8 +203,8 @@ def writeRulescustom(sublink,flagname,methods,selectfirst):    #客制化策略�
         proxy = str(other)
         proxy1 = proxy[1:-1]
         if selectfirst == 'yes':
-            ProxyGroup='\n\nProxy Group:\n\n' + clashgroup + \
-                    '- { name: "代理模式", type: select, proxies: ['  + clashname + ', "DIRECT",] }\n'\
+            ProxyGroup='\n\nProxy Group:\n\n' \
+                    '- { name: "代理模式", type: select, proxies: ['  + clashname + ', "DIRECT",] }\n'+ clashgroup +\
                     '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
                     '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
                     '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
@@ -216,7 +216,7 @@ def writeRulescustom(sublink,flagname,methods,selectfirst):    #客制化策略�
                     'Rule:\n'   
         else :
             ProxyGroup='\n\nProxy Group:\n\n' + clashgroup + \
-                    '- { name: "代理模式", type: select, proxies: [ '+ clashname +  ',"DIRECT"] }\n'\
+                    '- { name: "代理模式", type: select, proxies: [ '+ clashname +  ',"DIRECT"] }\n'+ clashgroup +\
                     '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
                     '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
                     '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
