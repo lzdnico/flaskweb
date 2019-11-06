@@ -69,9 +69,7 @@ def clashapi():
         except Exception as e:
             custom = ''
         #print(custom)
-        with codecs.open("./config/ip", "a",encoding = 'utf-8') as f:
-            f.writelines('有人调用了New_ClashAPI : \n'+sub+'\n调用IP为：'+ip+'\n参数为'+str(custom))
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_ClashAPI : \n'+sub))
+        #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_ClashAPI : \n'+sub))
         if custom == '' or custom == None :
             return api.clash.writeRules(sub,arg)
         else :
@@ -99,9 +97,7 @@ def clashapigroup():
         except Exception as e:
             custom = ''
         #print(custom)
-        with codecs.open("./config/ip", "a",encoding = 'utf-8') as f:
-            f.writelines('有人调用了New_分组ClashAPI : \n'+sub+'\n调用IP为：'+ip+'\n参数为'+str(custom))
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_Clash分组API : \n'+sub+str(custom)))
+        #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_Clash分组API : \n'+sub+str(custom)))
         if custom == '' or custom == None :
             return api.clash.writeRules(sub,arg)
         else :
@@ -117,9 +113,7 @@ def qxapi():
         #print(sub)
         tag=request.args.get('tag')
         #print(tag)
-        with codecs.open("./config/ip", "a",encoding = 'utf-8') as f:
-            f.writelines('有人调用了New_QXAPI : \n'+sub+'\n调用IP为：'+ip+'\n参数为'+str(tag))
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_QXAPI : \n'+sub+'\n参数为'+tag))
+        #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_QXAPI : \n'+sub+'\n参数为'+tag))
         return  api.qx.getqxrules(sub,tag)
 
     except Exception as e:
@@ -133,9 +127,7 @@ def ssrapi():
         #print(sub)
         custom=request.args.get('custom')
         #print(tag)
-        with codecs.open("./config/ip", "a",encoding = 'utf-8') as f:
-            f.writelines('有人调用了New_SSRAPI : \n'+sub+'\n调用IP为：'+ip+'\n参数为'+str(custom))
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_SSRAPI : \n'+sub+'\n参数为'+custom))
+        #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_SSRAPI : \n'+sub+'\n参数为'+custom))
         return  api.customssr.getcustomssrlink(sub,custom)
 
     except Exception as e:
@@ -149,9 +141,7 @@ def loonapi():
         #print(sub)
         tag=request.args.get('tag')
         #print(tag)
-        with codecs.open("./config/ip", "a",encoding = 'utf-8') as f:
-            f.writelines('有人调用了New_LoonAPI : \n'+sub+'\n调用IP为：'+ip+'\n参数为'+str(tag))
-        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_LoonAPI : \n'+sub+'\n参数为'+tag))
+        #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_LoonAPI : \n'+sub+'\n参数为'+tag))
         return  api.loon.getrules(sub,tag)
     except Exception as e:
         return '请确认调用格式适合正确'+ api.aff.aff
