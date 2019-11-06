@@ -195,37 +195,29 @@ def writeRulescustom(sublink,flagname,methods,selectfirst):    #客制化策略�
                 clashname += '"{name}故障切换",'.format(name=str(flags[i]).replace('&',''))
             if methods[i] == 'load-balance' :
                 clashgroup  += '- { ' + 'name: "{name}负载均衡", type: "load-balance", "proxies": '.format(name=str(flags[i]).replace('&','')) + str(groups[i]) + ', url: "http://www.gstatic.com/generate_204", interval: 450 }\n'
-                clashname += '"{name}负载均衡",'.format(name=str(flags[i]).replace('&',''))          
+                clashname += '"{name}负载均衡",'.format(name=str(flags[i]).replace('&',''))   
+            if methods[i] == 'url-test' :
+                clashgroup  += '- { ' + 'name: "{name}延迟最低", type: "url-test", "proxies": '.format(name=str(flags[i]).replace('&','')) + str(groups[i]) + ', url: "http://www.gstatic.com/generate_204", interval: 450 }\n'
+                clashname += '"{name}延迟最低",'.format(name=str(flags[i]).replace('&',''))                 
         clashname = clashname[:-1]
         #print(clashgroup)
         #print(clashname)
 
         proxy = str(other)
         proxy1 = proxy[1:-1]
-        if selectfirst == 'yes':
-            ProxyGroup='\n\nProxy Group:\n\n' \
-                    '- { name: "代理模式", type: select, proxies: ['  + clashname + ', "DIRECT",] }'+ clashgroup +\
-                    '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
-                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
-                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
-                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
-                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式",'+ clashname +','+ proxy1 +'] }\n'\
+ 
+        ProxyGroup='\n\nProxy Group:\n\n' \
+                    '- { name: "代理模式", type: select, proxies: ['  + clashname + ', "DIRECT",] }\n'\
+                    '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
+                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
+                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
+                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
+                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式",'+ clashname +'] }\n'\
                     '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
                     '- { name: "Apple", type: select, proxies: ["DIRECT", "代理模式"] }\n'\
-                    '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT"] }\n\n\n'\
+                    '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT",'+clashname+'] }'+ clashgroup +'\n'\
                     'Rule:\n'   
-        else :
-            ProxyGroup='\n\nProxy Group:\n\n'  \
-                    '- { name: "代理模式", type: select, proxies: [ '+ clashname +  ',"DIRECT"] }'+ clashgroup +\
-                    '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
-                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
-                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
-                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+ clashname +','+ proxy1 +'] }\n'\
-                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式",'+ clashname +','+ proxy1 +'] }\n'\
-                    '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
-                    '- { name: "Apple", type: select, proxies: ["DIRECT", "代理模式"] }\n'\
-                    '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT"] }\n\n\n'\
-                    'Rule:\n'              
+             
         rules = getrules()        
         currenttime = '# 更新时间为（看分钟就行，不知道哪个时区）：'+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'\n'
         content = currenttime+rules[0]+rules[1]+Peoxies+ProxyGroup+rules[2]
