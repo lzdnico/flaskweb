@@ -113,8 +113,8 @@ def getcustomssrlink(sublink, flagname):    #客制化ssr订阅
             ssrlink = safe_base64_decode(ssrdata[i].replace('ssr://','').replace('\r',''))
             nodeR = getnodeR(ssrlink)
             remark = nodeR['remark']                                
-            if "30倍" in remark:        #用于剔除高倍率节点
-                continue
+            #if "30倍" in remark:        #用于剔除高倍率节点
+                #continue
             for flag in flags:          #遍历节点匹配
                 if flag == '' :         #滤掉无效匹配请求
                     continue
