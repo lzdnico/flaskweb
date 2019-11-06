@@ -147,4 +147,4 @@ def loonapi():
         return '请确认调用格式适合正确'+ api.aff.aff
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=False,port=10086)            #自定义端口
+    app.run(host='0.0.0.0',debug=False,port=10010)            #自定义端口
