@@ -84,24 +84,6 @@ def getnodeR(s):             #获取节点信息
 
     return config
 
-def getrules():             # 自定义规则
-    
-    try:
-        finalrules=[]
-        
-        with open("./config/general.yml", "r",encoding = 'utf-8') as f:
-            p_rule = f.read() + '\n'
-
-        with open("./config/lrules.yml", "r",encoding = 'utf-8') as f:
-            l_rule = f.read()        
-        
-        Peoxies = 'Proxy:\n'
-        finalrules.append(p_rule)
-        finalrules.append(Peoxies)
-        finalrules.append(l_rule)
-        return finalrules
-    except Exception as e:
-        print(e)
 
 def getcustomssrlink(sublink, flagname):    #客制化ssr订阅
     try:   
