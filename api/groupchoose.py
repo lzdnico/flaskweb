@@ -112,6 +112,28 @@ def writeRulescustom(sublink,flagname,methods,selectfirst):    #客制化策略�
         data = Retry_request(sublink)    #请求订阅        
         ssrdata=safe_base64_decode(data).strip().split('\n')  
         flags = flagname.split('@')
+        for i in range(len(flags)):
+                while 1:
+                    if '港' in flags[i]:
+                        flags[i] = '🇭🇰&' + flags[i]
+                        break
+                    if '台' in flags[i] or '湾' in flags[i]:
+                        flags[i] = '🇹🇼&' + flags[i]
+                        break
+                    if '美' in flags[i]:
+                        flags[i] = '🇺🇲&' + flags[i]
+                        break
+                    if '日' in flags[i]:
+                        flags[i] = '🇯🇵&' + flags[i]
+                        break
+                    if  '新' in flags[i] or '狮城' in flags[i]:
+                        flags[i] = '🇸🇬&' + flags[i] 
+                        break 
+                    if  '韩' in flags[i] or '首尔' in flags[i]:
+                        flags[i] = '🇰🇷&' + flags[i]  
+                        break
+                    else :
+                        break              
         #ssrdata = data.strip().replace('==','').split('\n')     
         groups = [[] for _ in range(len(flags))]
         #print(groups)
@@ -119,11 +141,34 @@ def writeRulescustom(sublink,flagname,methods,selectfirst):    #客制化策略�
         for i in range(len(ssrdata)):          #遍历节点                                         #节点组            
             ssrlink = safe_base64_decode(ssrdata[i].replace('ssr://','').replace('\r',''))
             nodeR = getnodeR(ssrlink)
-            remark = nodeR['remark']                                              
+            remark = nodeR['remark']  
+            ##加图标
+            while 1:
+                if '港' in remark:
+                    remark = '🇭🇰' + remark
+                    break
+                if '台' in remark or '湾' in remark:
+                    remark = '🇹🇼' + remark
+                    break
+                if '美' in remark:
+                    remark = '🇺🇲' + remark
+                    break
+                if '日' in remark:
+                    remark = '🇯🇵' + remark
+                    break
+                if  '新' in remark or '狮城' in remark:
+                    remark = '🇸🇬' + remark 
+                    break 
+                if  '韩' in remark or '首尔' in remark:
+                    remark = '🇰🇷' + remark  
+                    break
+                else :
+                    break                                                           
+
             for i in range(len(flags)):     #遍历分组匹配规则
                 if flags[i] == '':
-                    continue
-                if flags[i].split('&')[0] in remark:   #每组第一个匹配
+                    continue                                
+                if flags[i].split('&')[1] in remark:   #每组第一个匹配             
                     if '&' in flags[i]:                #每组是否有多个匹配要求   @香港&1倍@美国     适用 香港&1倍  
                         inremark = 1
                         andflags = flags[i].split('&')
