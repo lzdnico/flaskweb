@@ -133,6 +133,7 @@ def writeRulescustom(sublink,flagname,methods,selectfirst):    #客制化策略�
                         flags[i] = '🇰🇷&' + flags[i]  
                         break
                     else :
+                        flags[i] = '&' + flags[i]
                         break              
         #ssrdata = data.strip().replace('==','').split('\n')     
         groups = [[] for _ in range(len(flags))]
