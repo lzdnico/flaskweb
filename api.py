@@ -25,8 +25,6 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         sub = request.form['left']
-        with codecs.open("./config/ip", "a",encoding = 'utf-8') as f:
-            f.writelines(sub+'\n')
         custom = urllib.parse.quote(request.form['custom'])
         custommethod = urllib.parse.quote(request.form['custommethod'])
         Clash = 'http://{ip}/clashr/nico?sublink='.format(ip=api.aff.apiip)+str(sub)+'&selectfirst=no'
@@ -84,7 +82,6 @@ def clashapigroup():
 @app.route('/qx/nico', methods=['GET', 'POST'])
 def qxapi():
     try:
-        ip = request.remote_addr
         sub = request.args.get('sublink')            
         tag=request.args.get('tag')
         return  api.qx.getqxrules(sub,tag)
