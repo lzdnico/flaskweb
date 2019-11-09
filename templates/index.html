@@ -34,7 +34,7 @@
                 <br/><br/>填入想要的节点:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 <input type="text" name = "custom" placeholder = "例如：@香港&1倍@美国@PPCW 即：只获取香港的1倍节点，美国节点，PPCW节点" size="100" value = "{{ Custom }}"/>   
                 <br/><br/>填入节点的模式:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <input type="text" name = "custommethod" placeholder = "例如： @select@fallback@load-balance" size="100" value = "{{ Custommethod }}"/>               
+                <input type="text" name = "custommethod" placeholder = "例如： @select@fallback@load-balance@url-test" size="100" value = "{{ Custommethod }}"/>               
                 <br/><br/>客制化分组Clash托管地址为：
                 <input type="text" name = "customgroupclash" placeholder = "客制化分组CLash托管地址" readonly="readonly" value = "{{ CustomGroupClash }}" size="100"/>
                 <br/><br/>客制化SSR订阅地址为：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -49,7 +49,8 @@
                 2.《填入想要的节点》 示例： @美国@日本@香港@台湾 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  或者  @美国@日本@香港&CMHK@台湾
                 <br/>
                 3.《填入节点的模式》 示例： @select@fallback@load-balance@url-test  &nbsp&nbsp&nbsp  节点模式与想要的节点个数必须一致!!! <br/>
-                4.&nbsp&nbsp如有疑问从<a target="_blank" href="https://t.me/niconewbeeeapi">频道</a>进入交流群进行提问
+                4.&nbsp&nbsp如果不需要emoji，请将生成的地址中最后部分&emoji=yes改为&emoji=no<br/>
+                5.&nbsp&nbsp如有疑问从<a target="_blank" href="https://t.me/niconewbeeeapi">频道</a>进入交流群进行提问
             </form>
         </div>
     </body>

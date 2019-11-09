@@ -84,7 +84,7 @@ def getnodeR(s):             #获取节点信息
 
     return config
 
-def getrules():             # 自定义规则
+def getrules(emoji):             # 自定义规则
     
     try:
         finalrules=[]
@@ -92,8 +92,12 @@ def getrules():             # 自定义规则
         with open("./config/general.yml", "r",encoding = 'utf-8') as f:
             p_rule = f.read() + '\n'
 
-        with open("./config/customlrules.yml", "r",encoding = 'utf-8') as f:
-            l_rule = f.read()        
+        if emoji == 'yes':
+            with open("./config/customlrules.yml", "r",encoding = 'utf-8') as f:
+                l_rule = f.read()       
+        else :
+            with open("./config/lrules.yml", "r",encoding = 'utf-8') as f:
+                l_rule = f.read()                
         
         Peoxies = 'Proxy:\n'
         finalrules.append(p_rule)
@@ -103,7 +107,7 @@ def getrules():             # 自定义规则
     except Exception as e:
         print(e)
 
-def writeRulescustom(sublink,flagname,methods,selectfirst):    #客制化策略组及规则
+def writeRulescustom(sublink,flagname,methods,emoji):    #客制化策略组及规则
     try:
         #print(sublink + 'custom')
         other=[]       
@@ -113,28 +117,43 @@ def writeRulescustom(sublink,flagname,methods,selectfirst):    #客制化策略�
         ssrdata=safe_base64_decode(data).strip().split('\n')  
         flags = flagname.split('@')
         for i in range(len(flags)):
-                while 1:
-                    if '港' in flags[i]:
-                        flags[i] = '🇭🇰&' + flags[i]
-                        break
-                    if '台' in flags[i] or '湾' in flags[i]:
-                        flags[i] = '🇹🇼&' + flags[i]
-                        break
-                    if '美' in flags[i]:
-                        flags[i] = '🇺🇲&' + flags[i]
-                        break
-                    if '日' in flags[i]:
-                        flags[i] = '🇯🇵&' + flags[i]
-                        break
-                    if  '新' in flags[i] or '狮城' in flags[i]:
-                        flags[i] = '🇸🇬&' + flags[i] 
-                        break 
-                    if  '韩' in flags[i] or '首尔' in flags[i]:
-                        flags[i] = '🇰🇷&' + flags[i]  
-                        break
-                    else :
-                        flags[i] = '&' + flags[i]
-                        break              
+            while 1:
+                if '港' in flags[i]:
+                    flags[i] = '🇭🇰&' + flags[i]
+                    break
+                if '台' in flags[i] or '湾' in flags[i] or "彰化" in flags[i]  or "新北" in flags[i]:
+                    flags[i] = '🇹🇼&' + flags[i]
+                    break
+                if "美" in flags[i]  or "圣克拉拉" in flags[i]  or "波特兰" in flags[i]  or "洛杉矶" in flags[i]  or "费利蒙" in flags[i]  or "圣何塞" in flags[i] or "达拉斯" in flags[i] or "芝加哥" in flags[i] or "凤凰城" in flags[i] or "西雅图" in flags[i] or "硅谷" in flags[i]:
+                    flags[i] = '🇺🇸&' + flags[i]
+                    break
+                if "日" in flags[i]  or "埼玉" in flags[i]   or "东京" in flags[i] or "大阪" in flags[i]:
+                    flags[i] = '🇯🇵&' + flags[i]
+                    break
+                if  '新' in flags[i] or '狮城' in flags[i]:
+                    flags[i] = '🇸🇬&' + flags[i] 
+                    break 
+                if  '韩' in flags[i] or '首尔' in flags[i]:
+                    flags[i] = '🇰🇷&' + flags[i]  
+                    break
+                if "俄罗斯"  in flags[i] or "圣彼得堡" in flags[i] :
+                    flags[i] = '🇷🇺&' + flags[i]
+                    break
+                if "泰"  in flags[i] or "曼谷" in flags[i] :
+                    flags[i] = '🇹🇭&' + flags[i]
+                    break
+                if "法兰克福"  in flags[i] or "德" in flags[i] :
+                    flags[i] = '🇩🇪&' + flags[i]
+                    break
+                if "伦敦"  in flags[i] or "英" in flags[i] :
+                    flags[i] = '🇬🇧&' + flags[i]
+                    break
+                if "悉尼" in flags[i]  or "澳大利亚" in flags[i] :
+                    flags[i] = '🇦🇺&' + flags[i]
+                    break
+                else :
+                    flags[i] = '&' + flags[i]
+                    break            
         #ssrdata = data.strip().replace('==','').split('\n')     
         groups = [[] for _ in range(len(flags))]
         #print(groups)
@@ -148,13 +167,13 @@ def writeRulescustom(sublink,flagname,methods,selectfirst):    #客制化策略�
                 if '港' in remark:
                     remark = '🇭🇰' + remark
                     break
-                if '台' in remark or '湾' in remark:
+                if '台' in remark or '湾' in remark or "彰化" in remark  or "新北" in remark:
                     remark = '🇹🇼' + remark
                     break
-                if '美' in remark:
-                    remark = '🇺🇲' + remark
+                if "美" in remark  or "圣克拉拉" in remark  or "波特兰" in remark  or "洛杉矶" in remark  or "费利蒙" in remark  or "圣何塞" in remark or "达拉斯" in remark or "芝加哥" in remark or "凤凰城" in remark or "西雅图" in remark or "硅谷" in remark:
+                    remark = '🇺🇸' + remark
                     break
-                if '日' in remark:
+                if "日" in remark  or "埼玉" in remark   or "东京" in remark or "大阪" in remark:
                     remark = '🇯🇵' + remark
                     break
                 if  '新' in remark or '狮城' in remark:
@@ -162,6 +181,21 @@ def writeRulescustom(sublink,flagname,methods,selectfirst):    #客制化策略�
                     break 
                 if  '韩' in remark or '首尔' in remark:
                     remark = '🇰🇷' + remark  
+                    break
+                if "俄罗斯"  in remark or "圣彼得堡" in remark :
+                    remark = '🇷🇺' + remark
+                    break
+                if "泰"  in remark or "曼谷" in remark :
+                    remark = '🇹🇭' + remark
+                    break
+                if "法兰克福"  in remark or "德" in remark :
+                    remark = '🇩🇪' + remark
+                    break
+                if "伦敦"  in remark or "英" in remark :
+                    remark = '🇬🇧' + remark
+                    break
+                if "悉尼" in remark  or "澳大利亚" in remark :
+                    remark = '🇦🇺' + remark
                     break
                 else :
                     break                                                           
@@ -247,24 +281,36 @@ def writeRulescustom(sublink,flagname,methods,selectfirst):    #客制化策略�
                 clashname += '"{name}延迟最低",'.format(name=str(flags[i]).replace('&',''))                 
         clashname = clashname[:-1]
         #print(clashgroup)
-        #print(clashname)
-
+        #print(clashname) 
         proxy = str(other)
         proxy1 = proxy[1:-1]
- 
-        ProxyGroup='\n\nProxy Group:\n\n' \
-                    '- { name: "代理模式", type: select, proxies: ['  + clashname + ', "DIRECT",] }\n'\
-                    '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
-                    '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
-                    '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
-                    '- { name: "国际媒体", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
-                    '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式",'+ clashname +'] }\n'\
-                    '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
-                    '- { name: "Apple", type: select, proxies: ["DIRECT", "代理模式"] }\n'\
-                    '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT",'+clashname+'] }'+ clashgroup +'\n'\
-                    'Rule:\n'   
-             
-        rules = getrules()        
+
+        rules = getrules(emoji)
+        if emoji == 'yes':
+            ProxyGroup='\n\nProxy Group:\n\n' \
+                        '- { name: "🔰 代理模式", type: select, proxies: ['  + clashname + ', "DIRECT",] }\n'\
+                        '- { name: "🎥 NETFLIX", type: select, proxies: ["🔰 代理模式",'+ clashname +'] }\n'\
+                        '- { name: "📹 YouTube", type: select, proxies: ["🔰 代理模式",'+ clashname +'] }\n'\
+                        '- { name: "📺 巴哈姆特", type: select, proxies: ["🔰 代理模式",'+ clashname +'] }\n'\
+                        '- { name: "🌍 国外媒体", type: select, proxies: ["🔰 代理模式",'+ clashname +'] }\n'\
+                        '- { name: "🌏 国内媒体", type: select, proxies: ["DIRECT","🔰 代理模式",'+ clashname +'] }\n'\
+                        '- { name: "⛔️ 恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
+                        '- { name: "🍎 苹果服务", type: select, proxies: ["DIRECT", "🔰 代理模式"] }\n'\
+                        '- { name: "🐟 漏网之鱼", type: select, proxies: ["🔰 代理模式", "DIRECT",'+clashname+'] }'+ clashgroup +'\n'\
+                        'Rule:\n'
+        else :
+            ProxyGroup='\n\nProxy Group:\n\n' \
+                        '- { name: "代理模式", type: select, proxies: ['  + clashname + ', "DIRECT",] }\n'\
+                        '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
+                        '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
+                        '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
+                        '- { name: "国际媒体", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
+                        '- { name: "国内媒体", type: select, proxies: ["DIRECT","代理模式",'+ clashname +'] }\n'\
+                        '- { name: "恶意网站", type: select, proxies: ["REJECT", "DIRECT"] }\n'\
+                        '- { name: "Apple", type: select, proxies: ["DIRECT", "代理模式"] }\n'\
+                        '- { name: "漏网之鱼", type: select, proxies: ["代理模式", "DIRECT",'+clashname+'] }'+ clashgroup +'\n'\
+                        'Rule:\n'               
+                    
         currenttime = '# 更新时间为（看分钟就行，不知道哪个时区）：'+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'\n'
         content = currenttime+rules[0]+rules[1]+Peoxies+ProxyGroup+rules[2]
         return content

@@ -37,7 +37,7 @@ def index():
             if custommethod == '':
                 CustomGroupClash = '请在《填入节点模式》中按照说明填写'
             else:
-                CustomGroupClash = 'http://{ip}/clashr/customgroup?sublink={sub}&custom={custom}&custommethod={custommethod}&selectfirst=no'.format(ip=api.aff.apiip,sub=str(sub),custom=str(custom),custommethod=str(custommethod))
+                CustomGroupClash = 'http://{ip}/clashr/customgroup?sublink={sub}&custom={custom}&custommethod={custommethod}&emoji=yes'.format(ip=api.aff.apiip,sub=str(sub),custom=str(custom),custommethod=str(custommethod))
             CustomSSR = 'http://{ip}/ssr/nico?sublink={sub}&custom={custom}'.format(ip=api.aff.apiip,sub=str(sub),custom=str(custom))
         QX = 'http://{ip}/qx/nico?sublink={sub}&tag=stc'.format(ip=api.aff.apiip,sub=str(sub))
         Loon = 'http://{ip}/loon/nico?sublink={sub}&tag=stc'.format(ip=api.aff.apiip,sub=str(sub))
@@ -61,7 +61,7 @@ def clashapigroup():
     try:
         sub = request.args.get('sublink')
         try:
-            arg = request.args.get('selectfirst')
+            arg = request.args.get('emoji')
         except Exception as e:
             arg = 'no'
         try:
