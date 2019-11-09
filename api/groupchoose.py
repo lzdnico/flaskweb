@@ -58,7 +58,7 @@ def getnodeR(s):             #获取节点信息
     pass_param_spilted = re.split('\/\?',pass_param)
     passwd = safe_base64_decode(pass_param_spilted[0]) #解码得到password
     try:
-        obfs_param = re.search(r'obfsparam=([^&]+)',pass_param_spilted[1]).group(1)
+        obfs_param = safe_base64_decode(re.search(r'obfsparam=([^&]+)',pass_param_spilted[1]).group(1))
     except:
         obfs_param=""
     try:
@@ -92,7 +92,7 @@ def getrules():             # 自定义规则
         with open("./config/general.yml", "r",encoding = 'utf-8') as f:
             p_rule = f.read() + '\n'
 
-        with open("./config/lrules.yml", "r",encoding = 'utf-8') as f:
+        with open("./config/customlrules.yml", "r",encoding = 'utf-8') as f:
             l_rule = f.read()        
         
         Peoxies = 'Proxy:\n'

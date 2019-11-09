@@ -58,7 +58,7 @@ def getnodeR(s):             #获取节点信息
     pass_param_spilted = re.split('\/\?',pass_param)
     passwd = safe_base64_decode(pass_param_spilted[0]) #解码得到password
     try:
-        obfs_param = re.search(r'obfsparam=([^&]+)',pass_param_spilted[1]).group(1)
+        obfs_param = safe_base64_decode(re.search(r'obfsparam=([^&]+)',pass_param_spilted[1]).group(1))
     except:
         obfs_param=""
     try:
