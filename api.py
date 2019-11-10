@@ -37,7 +37,7 @@ def index():
             if custommethod == '':
                 CustomGroupClash = '请在《填入节点模式》中按照说明填写'
             else:
-                CustomGroupClash = 'http://{ip}/clashr/customgroup?sublink={sub}&custom={custom}&custommethod={custommethod}&emoji=yes'.format(ip=api.aff.apiip,sub=str(sub),custom=str(custom),custommethod=str(custommethod))
+                CustomGroupClash = 'http://{ip}/clashr/customgroup?sublink={sub}&custom={custom}&custommethod={custommethod}&dns=no&emoji=yes'.format(ip=api.aff.apiip,sub=str(sub),custom=str(custom),custommethod=str(custommethod))
             CustomSSR = 'http://{ip}/ssr/nico?sublink={sub}&custom={custom}'.format(ip=api.aff.apiip,sub=str(sub),custom=str(custom))
         QX = 'http://{ip}/qx/nico?sublink={sub}&tag=stc'.format(ip=api.aff.apiip,sub=str(sub))
         Loon = 'http://{ip}/loon/nico?sublink={sub}&tag=stc'.format(ip=api.aff.apiip,sub=str(sub))
@@ -65,6 +65,10 @@ def clashapigroup():
         except Exception as e:
             arg = 'no'
         try:
+            dns = request.args.get('dns')
+        except Exception as e:
+            dns = 'no'
+        try:
             custom = request.args.get('custom')
         except Exception as e:
             custom = ''
@@ -75,7 +79,7 @@ def clashapigroup():
         if custom == '' or custom == None :
             return api.clash.writeRules(sub,arg)
         else :
-            return  api.groupchoose.writeRulescustom(sub,custom,custommethod,arg)
+            return  api.groupchoose.writeRulescustom(sub,custom,custommethod,arg,dns)
     except Exception as e:
         return '检测调用格式是否正确'+ api.aff.aff
 

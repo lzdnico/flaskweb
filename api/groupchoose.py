@@ -84,14 +84,17 @@ def getnodeR(s):             #获取节点信息
 
     return config
 
-def getrules(emoji):             # 自定义规则
+def getrules(emoji,dns):             # 自定义规则
     
     try:
         finalrules=[]
-        
-        with open("./config/general.yml", "r",encoding = 'utf-8') as f:
-            p_rule = f.read() + '\n'
 
+        if dns == 'yes':        
+            with open("./config/dnsgeneral.yml", "r",encoding = 'utf-8') as f:
+                p_rule = f.read() + '\n'
+        else :
+            with open("./config/general.yml", "r",encoding = 'utf-8') as f:
+                p_rule = f.read() + '\n'            
         if emoji == 'yes':
             with open("./config/customlrules.yml", "r",encoding = 'utf-8') as f:
                 l_rule = f.read()       
@@ -107,7 +110,7 @@ def getrules(emoji):             # 自定义规则
     except Exception as e:
         print(e)
 
-def writeRulescustom(sublink,flagname,methods,emoji):    #客制化策略组及规则
+def writeRulescustom(sublink,flagname,methods,emoji,dns):    #客制化策略组及规则
     try:
         #print(sublink + 'custom')
         other=[]       
@@ -285,7 +288,7 @@ def writeRulescustom(sublink,flagname,methods,emoji):    #客制化策略组及�
         proxy = str(other)
         proxy1 = proxy[1:-1]
 
-        rules = getrules(emoji)
+        rules = getrules(emoji,dns)
         if emoji == 'yes':
             ProxyGroup='\n\nProxy Group:\n\n' \
                         '- { name: "🔰 代理模式", type: select, proxies: ['  + clashname + ', "DIRECT",] }\n'\
