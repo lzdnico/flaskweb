@@ -1,23 +1,56 @@
-# > 🌌 YouTube
-# USER-AGENT,YouTube*,🌍 国外媒体
-- DOMAIN-SUFFIX,googlevideo.com,📹 YouTube
-- DOMAIN-SUFFIX,youtube.com,📹 YouTube
-- DOMAIN,youtubei.googleapis.com,📹 YouTube
-# > Bahamut
-# USER-AGENT,Anime*,国际媒体 巴哈姆特
+# > Apple
+- DOMAIN-SUFFIX,aaplimg.com,🍎 苹果服务
+- DOMAIN-SUFFIX,apple.co,🍎 苹果服务
+- DOMAIN-SUFFIX,apple.com,🍎 苹果服务
+- DOMAIN-SUFFIX,appstore.com,🍎 苹果服务
+- DOMAIN-SUFFIX,cdn-apple.com,🍎 苹果服务
+- DOMAIN-SUFFIX,crashlytics.com,🍎 苹果服务
+- DOMAIN-SUFFIX,icloud.com,🍎 苹果服务
+- DOMAIN-SUFFIX,icloud-content.com,🍎 苹果服务
+- DOMAIN-SUFFIX,me.com,🍎 苹果服务
+- DOMAIN-SUFFIX,mzstatic.com,🍎 苹果服务
+- DOMAIN,www-cdn.icloud.com.akadns.net,🍎 苹果服务
+- IP-CIDR,17.0.0.0/8,🍎 苹果服务
+
+
+# USER-AGENT,Anime*,📺 巴哈姆特
+- DOMAIN-SUFFIX,bahamut.com.tw,📺 巴哈姆特
 - DOMAIN-SUFFIX,gamer.com.tw,📺 巴哈姆特
 - DOMAIN,gamer-cds.cdn.hinet.net,📺 巴哈姆特
 - DOMAIN,gamer2-cds.cdn.hinet.net,📺 巴哈姆特
+
+# USER-AGENT,com.google.ios.youtube*,📹 YouTube
+# USER-AGENT,YouTube*,📹 YouTube
+- DOMAIN-SUFFIX,googlevideo.com,📹 YouTube
+- DOMAIN-SUFFIX,youtube.com,📹 YouTube
+- DOMAIN,youtubei.googleapis.com,📹 YouTube
+
+# (国内媒体)
+
 # USER-AGENT,Argo*,🎥 NETFLIX
-- DOMAIN-SUFFIX,🎥 NETFLIX.com,🎥 NETFLIX
-- DOMAIN-SUFFIX,🎥 NETFLIX.net,🎥 NETFLIX
+- DOMAIN-SUFFIX,netflix.com,🎥 NETFLIX
+- DOMAIN-SUFFIX,netflix.net,🎥 NETFLIX
 - DOMAIN-SUFFIX,nflxext.com,🎥 NETFLIX
 - DOMAIN-SUFFIX,nflximg.com,🎥 NETFLIX
 - DOMAIN-SUFFIX,nflximg.net,🎥 NETFLIX
 - DOMAIN-SUFFIX,nflxso.net,🎥 NETFLIX
 - DOMAIN-SUFFIX,nflxvideo.net,🎥 NETFLIX
+
+- IP-CIDR,23.246.0.0/18,🎥 NETFLIX
+- IP-CIDR,37.77.184.0/21,🎥 NETFLIX
+- IP-CIDR,45.57.0.0/17,🎥 NETFLIX
+- IP-CIDR,64.120.128.0/17,🎥 NETFLIX
+- IP-CIDR,66.197.128.0/17,🎥 NETFLIX
+- IP-CIDR,108.175.32.0/20,🎥 NETFLIX
+- IP-CIDR,192.173.64.0/18,🎥 NETFLIX
+- IP-CIDR,198.38.96.0/19,🎥 NETFLIX
+- IP-CIDR,198.45.48.0/20,🎥 NETFLIX
+
+
 # Unbreak
-# > Firebase Cloud Messaging
+# > Google
+- DOMAIN-SUFFIX,googletraveladservices.com,DIRECT
+- DOMAIN,dl.google.com,DIRECT
 - DOMAIN,mtalk.google.com,DIRECT
 
 # Internet Service Provider ⛔️ 恶意网站 运营商劫持
@@ -117,7 +150,6 @@
 - DOMAIN-SUFFIX,wx16999.com,⛔️ 恶意网站
 - DOMAIN-SUFFIX,xiaohuau.xyz,⛔️ 恶意网站
 - DOMAIN-SUFFIX,yinmong.com,⛔️ 恶意网站
-- DOMAIN-SUFFIX,yiqifa.com,⛔️ 恶意网站
 - DOMAIN-SUFFIX,yitaopt.com,⛔️ 恶意网站
 - DOMAIN-SUFFIX,yjqiqi.com,⛔️ 恶意网站
 - DOMAIN-SUFFIX,yukhj.com,⛔️ 恶意网站
@@ -208,6 +240,11 @@
 # > Pandora
 # USER-AGENT,Pandora*,🌍 国外媒体
 - DOMAIN-SUFFIX,pandora.com,🌍 国外媒体
+# > SoundCloud
+# USER-AGENT,SoundCloud*,🌍 国外媒体
+- DOMAIN-SUFFIX,p-cdn.us,🌍 国外媒体
+- DOMAIN-SUFFIX,sndcdn.com,🌍 国外媒体
+- DOMAIN-SUFFIX,soundcloud.com,🌍 国外媒体
 # > Spotify
 # USER-AGENT,Spotify*,🌍 国外媒体
 - DOMAIN-SUFFIX,pscdn.co,🌍 国外媒体
@@ -244,6 +281,12 @@
 - DOMAIN-SUFFIX,llnwd.net,🌍 国外媒体
 - DOMAIN-SUFFIX,media-amazon.com,🌍 国外媒体
 - DOMAIN-SUFFIX,primevideo.com,🌍 国外媒体
+# > Bahamut
+# USER-AGENT,Anime*,🌍 国外媒体
+- DOMAIN-SUFFIX,bahamut.com.tw,🌍 国外媒体
+- DOMAIN-SUFFIX,gamer.com.tw,🌍 国外媒体
+- DOMAIN,gamer-cds.cdn.hinet.net,🌍 国外媒体
+- DOMAIN,gamer2-cds.cdn.hinet.net,🌍 国外媒体
 # > BBC iPlayer
 # USER-AGENT,BBCiPlayer*,🌍 国外媒体
 - DOMAIN-SUFFIX,bbc.co.uk,🌍 国外媒体
@@ -284,7 +327,8 @@
 - DOMAIN,s3-ap-southeast-1.amazonaws.com,🌍 国外媒体
 # > 华文电视
 # USER-AGENT,HWTVMobile*,🌍 国外媒体
-# DOMAIN-SUFFIX,5itv.tv,🌍 国外媒体
+- DOMAIN-SUFFIX,5itv.tv,🌍 国外媒体
+- DOMAIN-SUFFIX,ocnttv.com,🌍 国外媒体
 # > Hulu
 - DOMAIN-SUFFIX,hulu.com,🌍 国外媒体
 - DOMAIN-SUFFIX,huluim.com,🌍 国外媒体
@@ -319,6 +363,20 @@
 # USER-AGENT,mytv*,🌍 国外媒体
 - DOMAIN-SUFFIX,mytvsuper.com,🌍 国外媒体
 - DOMAIN-SUFFIX,tvb.com,🌍 国外媒体
+# > Netflix
+# USER-AGENT,Argo*,🌍 国外媒体
+- DOMAIN-SUFFIX,netflix.com,🌍 国外媒体
+- DOMAIN-SUFFIX,netflix.net,🌍 国外媒体
+- DOMAIN-SUFFIX,nflxext.com,🌍 国外媒体
+- DOMAIN-SUFFIX,nflximg.com,🌍 国外媒体
+- DOMAIN-SUFFIX,nflximg.net,🌍 国外媒体
+- DOMAIN-SUFFIX,nflxso.net,🌍 国外媒体
+- DOMAIN-SUFFIX,nflxvideo.net,🌍 国外媒体
+# > niconico
+- DOMAIN-SUFFIX,dmc.nico,🌍 国外媒体
+- DOMAIN-SUFFIX,nicovideo.jp,🌍 国外媒体
+- DOMAIN-SUFFIX,nimg.jp,🌍 国外媒体
+- DOMAIN-SUFFIX,socdm.com,🌍 国外媒体
 # > PBS
 # USER-AGENT,PBS*,🌍 国外媒体
 - DOMAIN-SUFFIX,pbs.org,🌍 国外媒体
@@ -326,6 +384,10 @@
 - DOMAIN-SUFFIX,phncdn.com,🌍 国外媒体
 - DOMAIN-SUFFIX,pornhub.com,🌍 国外媒体
 - DOMAIN-SUFFIX,pornhubpremium.com,🌍 国外媒体
+# > 台湾好
+# USER-AGENT,TaiwanGood*,🌍 国外媒体
+- DOMAIN-SUFFIX,skyking.com.tw,🌍 国外媒体
+- DOMAIN,hamifans.emome.net,🌍 国外媒体
 # > Twitch
 - DOMAIN-SUFFIX,twitch.tv,🌍 国外媒体
 - DOMAIN-SUFFIX,twitchcdn.net,🌍 国外媒体
@@ -339,6 +401,12 @@
 - DOMAIN,d1k2us671qcoau.cloudfront.net,🌍 国外媒体
 - DOMAIN,d2anahhhmp1ffz.cloudfront.net,🌍 国外媒体
 - DOMAIN,dfp6rglgjqszk.cloudfront.net,🌍 国外媒体
+# > Youtube
+# USER-AGENT,com.google.ios.youtube*,🌍 国外媒体
+# USER-AGENT,YouTube*,🌍 国外媒体
+- DOMAIN-SUFFIX,googlevideo.com,🌍 国外媒体
+- DOMAIN-SUFFIX,youtube.com,🌍 国外媒体
+- DOMAIN,youtubei.googleapis.com,🌍 国外媒体
 
 # (🌏 国内媒体)
 # > 愛奇藝台灣站
@@ -635,7 +703,6 @@
 - DOMAIN-SUFFIX,shopee.tw,🔰 代理模式
 - DOMAIN-SUFFIX,slideshare.net,🔰 代理模式
 - DOMAIN-SUFFIX,softfamous.com,🔰 代理模式
-- DOMAIN-SUFFIX,soundcloud.com,🔰 代理模式
 - DOMAIN-SUFFIX,ssrcloud.org,🔰 代理模式
 - DOMAIN-SUFFIX,startpage.com,🔰 代理模式
 - DOMAIN-SUFFIX,steamcommunity.com,🔰 代理模式
@@ -1135,6 +1202,7 @@
 - DOMAIN-SUFFIX,frdic.com,DIRECT
 - DOMAIN-SUFFIX,futu5.com,DIRECT
 - DOMAIN-SUFFIX,futunn.com,DIRECT
+- DOMAIN-SUFFIX,gandi.net,DIRECT
 - DOMAIN-SUFFIX,geilicdn.com,DIRECT
 - DOMAIN-SUFFIX,getpricetag.com,DIRECT
 - DOMAIN-SUFFIX,gifshow.com,DIRECT
@@ -1161,6 +1229,7 @@
 - DOMAIN-SUFFIX,meituan.com,DIRECT
 - DOMAIN-SUFFIX,meituan.net,DIRECT
 - DOMAIN-SUFFIX,mobike.com,DIRECT
+- DOMAIN-SUFFIX,moke.com,DIRECT
 - DOMAIN-SUFFIX,mubu.com,DIRECT
 - DOMAIN-SUFFIX,myzaker.com,DIRECT
 - DOMAIN-SUFFIX,nim-lang-cn.org,DIRECT
@@ -1175,6 +1244,7 @@
 - DOMAIN-SUFFIX,raychase.net,DIRECT
 - DOMAIN-SUFFIX,ronghub.com,DIRECT
 - DOMAIN-SUFFIX,ruguoapp.com,DIRECT
+- DOMAIN-SUFFIX,s-reader.com,DIRECT
 - DOMAIN-SUFFIX,sankuai.com,DIRECT
 - DOMAIN-SUFFIX,scomper.me,DIRECT
 - DOMAIN-SUFFIX,seafile.com,DIRECT
@@ -1182,7 +1252,6 @@
 - DOMAIN-SUFFIX,smzdm.com,DIRECT
 - DOMAIN-SUFFIX,snapdrop.net,DIRECT
 - DOMAIN-SUFFIX,snwx.com,DIRECT
-- DOMAIN-SUFFIX,s-reader.com,DIRECT
 - DOMAIN-SUFFIX,sspai.com,DIRECT
 - DOMAIN-SUFFIX,takungpao.com,DIRECT
 - DOMAIN-SUFFIX,teamviewer.com,DIRECT
@@ -1203,25 +1272,29 @@
 - DOMAIN-SUFFIX,zhimg.com,DIRECT
 - DOMAIN-SUFFIX,zhuihd.com,DIRECT
 - DOMAIN,download.jetbrains.com,DIRECT
+- DOMAIN,images-cn.ssl-images-amazon.com,DIRECT
+
 # > Apple
-- DOMAIN-SUFFIX,aaplimg.com,🍎 苹果服务
-- DOMAIN-SUFFIX,apple.co,🍎 苹果服务
-- DOMAIN-SUFFIX,apple.com,🍎 苹果服务
-- DOMAIN-SUFFIX,appstore.com,🍎 苹果服务
-- DOMAIN-SUFFIX,cdn-apple.com,🍎 苹果服务
-- DOMAIN-SUFFIX,crashlytics.com,🍎 苹果服务
-- DOMAIN-SUFFIX,icloud.com,🍎 苹果服务
-- DOMAIN-SUFFIX,icloud-content.com,🍎 苹果服务
-- DOMAIN-SUFFIX,me.com,🍎 苹果服务
-- DOMAIN-SUFFIX,mzstatic.com,🍎 苹果服务
-- DOMAIN,www-cdn.icloud.com.akadns.net,🍎 苹果服务
-- IP-CIDR,17.0.0.0/8,🍎 苹果服务
+- DOMAIN-SUFFIX,aaplimg.com,Apple
+- DOMAIN-SUFFIX,apple.co,Apple
+- DOMAIN-SUFFIX,apple.com,Apple
+- DOMAIN-SUFFIX,appstore.com,Apple
+- DOMAIN-SUFFIX,cdn-apple.com,Apple
+- DOMAIN-SUFFIX,crashlytics.com,Apple
+- DOMAIN-SUFFIX,icloud.com,Apple
+- DOMAIN-SUFFIX,icloud-content.com,Apple
+- DOMAIN-SUFFIX,me.com,Apple
+- DOMAIN-SUFFIX,mzstatic.com,Apple
+- DOMAIN,www-cdn.icloud.com.akadns.net,Apple
+- IP-CIDR,17.0.0.0/8,Apple
+
 # Local Area Network
 - IP-CIDR,192.168.0.0/16,DIRECT
 - IP-CIDR,10.0.0.0/8,DIRECT
 - IP-CIDR,172.16.0.0/12,DIRECT
 - IP-CIDR,127.0.0.0/8,DIRECT
 - IP-CIDR,100.64.0.0/10,DIRECT
+
 # Internet Service Provider ⛔️ 恶意网站 运营商劫持
 - IP-CIDR,39.107.15.115/32,⛔️ 恶意网站
 - IP-CIDR,47.89.59.182/32,⛔️ 恶意网站
@@ -1266,6 +1339,7 @@
 - IP-CIDR,211.161.101.106/32,⛔️ 恶意网站
 - IP-CIDR,220.115.251.25/32,⛔️ 恶意网站
 - IP-CIDR,222.73.156.235/32,⛔️ 恶意网站
+
 # (Extra IP-CIRD)
 # > Google
 - IP-CIDR,35.190.247.0/24,🔰 代理模式
@@ -1296,22 +1370,6 @@
 - IP-CIDR,179.60.192.0/22,🔰 代理模式
 - IP-CIDR,185.60.216.0/22,🔰 代理模式
 - IP-CIDR,204.15.20.0/22,🔰 代理模式
-- IP-CIDR,3.123.36.126/32,🔰 代理模式
-- IP-CIDR,52.58.209.134/32,🔰 代理模式
-- IP-CIDR,54.93.124.31/32,🔰 代理模式
-- IP-CIDR,54.173.34.141/32,🔰 代理模式
-- IP-CIDR,54.235.23.242/32,🔰 代理模式
-- IP-CIDR,169.45.248.118/32,🔰 代理模式
-# > NF
-- IP-CIDR,23.246.0.0/18,🎥 NETFLIX
-- IP-CIDR,37.77.184.0/21,🎥 NETFLIX
-- IP-CIDR,45.57.0.0/17,🎥 NETFLIX
-- IP-CIDR,64.120.128.0/17,🎥 NETFLIX
-- IP-CIDR,66.197.128.0/17,🎥 NETFLIX
-- IP-CIDR,108.175.32.0/20,🎥 NETFLIX
-- IP-CIDR,192.173.64.0/18,🎥 NETFLIX
-- IP-CIDR,198.38.96.0/19,🎥 NETFLIX
-- IP-CIDR,198.45.48.0/20,🎥 NETFLIX
 # > WhatsApp
 - IP-CIDR,3.123.36.126/32,🔰 代理模式
 - IP-CIDR,35.157.215.84/32,🔰 代理模式
@@ -1346,6 +1404,18 @@
 - IP-CIDR,125.209.208.0/20,🔰 代理模式
 - IP-CIDR,147.92.128.0/17,🔰 代理模式
 - IP-CIDR,203.104.144.0/21,🔰 代理模式
+# > Netflix
+- IP-CIDR,23.246.0.0/18,🌍 国外媒体
+- IP-CIDR,37.77.184.0/21,🌍 国外媒体
+- IP-CIDR,45.57.0.0/17,🌍 国外媒体
+- IP-CIDR,64.120.128.0/17,🌍 国外媒体
+- IP-CIDR,66.197.128.0/17,🌍 国外媒体
+- IP-CIDR,108.175.32.0/20,🌍 国外媒体
+- IP-CIDR,192.173.64.0/18,🌍 国外媒体
+- IP-CIDR,198.38.96.0/19,🌍 国外媒体
+- IP-CIDR,198.45.48.0/20,🌍 国外媒体
+
+
 # > 貂蝉彩票
 - IP-CIDR,220.128.148.75/32,DIRECT
 - IP-CIDR,220.128.148.76/30,DIRECT
@@ -1363,8 +1433,8 @@
 - IP-CIDR,104.25.207.28/32,DIRECT
 - IP-CIDR,47.113.5.253/32,DIRECT
 
+- GEOIP,CN,DIRECT
 # DNSPod Public DNS+
 - IP-CIDR,119.28.28.28/32,DIRECT
-# GeoIP China
-- GEOIP,CN,DIRECT
+
 - MATCH,🐟 漏网之鱼
