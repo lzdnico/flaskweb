@@ -125,7 +125,7 @@ def writeRulescustom(sublink,flagname,methods,emoji,dns):    #客制化策略组
                     flags[i] = '🇭🇰&' + flags[i]
                     break
                 if '台' in flags[i] or '湾' in flags[i] or "彰化" in flags[i]  or "新北" in flags[i]:
-                    flags[i] = '🇹🇼&' + flags[i]
+                    flags[i] = '🇨🇳&' + flags[i]
                     break
                 if "美" in flags[i]  or "圣克拉拉" in flags[i]  or "波特兰" in flags[i]  or "洛杉矶" in flags[i]  or "费利蒙" in flags[i]  or "圣何塞" in flags[i] or "达拉斯" in flags[i] or "芝加哥" in flags[i] or "凤凰城" in flags[i] or "西雅图" in flags[i] or "硅谷" in flags[i]:
                     flags[i] = '🇺🇸&' + flags[i]
@@ -171,7 +171,7 @@ def writeRulescustom(sublink,flagname,methods,emoji,dns):    #客制化策略组
                     remark = '🇭🇰' + remark
                     break
                 if '台' in remark or '湾' in remark or "彰化" in remark  or "新北" in remark:
-                    remark = '🇹🇼' + remark
+                    remark = '🇨🇳' + remark
                     break
                 if "美" in remark  or "圣克拉拉" in remark  or "波特兰" in remark  or "洛杉矶" in remark  or "费利蒙" in remark  or "圣何塞" in remark or "达拉斯" in remark or "芝加哥" in remark or "凤凰城" in remark or "西雅图" in remark or "硅谷" in remark:
                     remark = '🇺🇸' + remark
