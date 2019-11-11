@@ -30,18 +30,19 @@ def getrules():             # 自定义规则
         l_rule =  rules.split('Rule:\n')[1].replace('GlobalMedia','国际媒体').replace('HKMTMedia','国内媒体').replace('Hijacking','恶意网站').replace('Final','漏网之鱼').replace('PROXY','代理模式')
         l_rule2 =  rules.split('Rule:\n')[1].replace('GlobalMedia','🌍 国外媒体').replace('HKMTMedia','🌏 国内媒体').replace('Hijacking','⛔️ 恶意网站').replace('Final','🐟 漏网之鱼').replace('PROXY','🔰 代理模式')
  
-        nf_rule = l_rule.split('# > Netflix\n')[1].split('# > niconico\n')[0].replace('国际媒体','Netflix') + '\n'
+        nf_rule = l_rule.split('# > Netflix\n')[1].split('# > niconico\n')[0].replace('国际媒体','Netflix') + '\n'                 #NF域名规则提前
         nf_rule2 = l_rule.split('# > Netflix\n')[1].split('# > niconico\n')[0].replace('国际媒体','🎥 NETFLIX') + '\n'
-        nf2_rule = l_rule.split('# > Netflix\n')[2].split('# GeoIP China\n')[0].replace('国际媒体','Netflix') + '\n'
-        nf2_rule2 = l_rule.split('# > Netflix\n')[2].split('# GeoIP China\n')[0].replace('国际媒体','🎥 NETFLIX') + '\n'
+        
+        nf2_rule = l_rule.split('# > Netflix\n')[2].split('# DNSPod Public DNS+\n')[0].replace('国际媒体','Netflix') + '\n'          #NF_ip规则提前
+        nf2_rule2 = l_rule.split('# > Netflix\n')[2].split('# DNSPod Public DNS+\n')[0].replace('国际媒体','🎥 NETFLIX') + '\n'
 
-        bahamut_rule = l_rule.split('# > Bahamut\n')[1].split('# > BBC iPlayer\n')[0].replace('国际媒体','动画疯') + '\n'
+        bahamut_rule = l_rule.split('# > Bahamut\n')[1].split('# > BBC iPlayer\n')[0].replace('国际媒体','动画疯') + '\n'            #动画疯规则提前
         bahamut_rule2 = l_rule.split('# > Bahamut\n')[1].split('# > BBC iPlayer\n')[0].replace('国际媒体','📺 巴哈姆特') + '\n'
 
-        ytb_rule = l_rule.split('# > Youtube\n')[1].split('# > 愛奇藝台灣站\n')[0].replace('国际媒体','Youtube') + '\n'
+        ytb_rule = l_rule.split('# > Youtube\n')[1].split('# > 愛奇藝台灣站\n')[0].replace('国际媒体','Youtube') + '\n'            #Youtube规则提前
         ytb_rule2 = l_rule.split('# > Youtube\n')[1].split('# > 愛奇藝台灣站\n')[0].replace('国际媒体','📹 YouTube') + '\n'
         
-        apple ='# > Apple\n'+ l_rule.split('# > Apple\n')[2].split('# Local Area Network\n')[0].replace('Apple','Apple') + '\n'
+        apple ='# > Apple\n'+ l_rule.split('# > Apple\n')[2].split('# Local Area Network\n')[0].replace('Apple','Apple') + '\n'             #Apple规则提前
         apple2 ='# > Apple\n'+ l_rule.split('# > Apple\n')[2].split('# Local Area Network\n')[0].replace('Apple','🍎 苹果服务') + '\n'
 
         with open("./config/selfrules.yml", "r",encoding = 'utf-8') as f:
@@ -49,21 +50,21 @@ def getrules():             # 自定义规则
 
         last = l_rule.split('# GeoIP China')[1]
         last2 = l_rule2.split('# GeoIP China')[1]
-        above = l_rule.split('# GeoIP China')[0]
-        above2 = l_rule2.split('# GeoIP China')[0]
-        l_rule =  apple + bahamut_rule + ytb_rule + nf_rule + nf2_rule + above + selfrule + last
 
+        above = l_rule.split('# > Apple\n')[0]+l_rule.split('# > Apple\n')[1]+'# Local Area Network\n'+l_rule.split('# Local Area Network\n')[1].split('# GeoIP China\n')[0]
+        above2 = l_rule2.split('# > Apple\n')[0]+l_rule2.split('# > Apple\n')[1]+'# Local Area Network\n'+l_rule2.split('# Local Area Network\n')[1].split('# GeoIP China\n')[0]
+
+        l_rule =  apple + bahamut_rule + ytb_rule + nf_rule + nf2_rule + above + selfrule + last
         l_rule2 =  apple2 + bahamut_rule2 + ytb_rule2 + nf_rule2 + nf2_rule2 + above2 + selfrule + last2
+
         with codecs.open("./config/lrules.yml", "w",encoding = 'utf-8') as f:
             f.writelines(l_rule) 
         with codecs.open("./config/customlrules.yml", "w",encoding = 'utf-8') as f:
             f.writelines(l_rule2) 
-
- 
-
     
     except Exception as e:
         print(e)
 
 if __name__ == '__main__':
     getrules()
+    print('success')
