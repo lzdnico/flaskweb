@@ -18,7 +18,12 @@ class modify:
                 obj['account']['user_type'] = "Premium"
                 obj['account']['current_period']['until'] = "2099-10-10T03:27:34"
                 flow.response.set_text(json.dumps(obj))
-            
+
+            if flow.request.url.startswith("https://api.intsig.net/purchase/cs/query_property"):
+                obj = json.loads(flow.response.get_text())
+                obj = {"data":{"psnl_vip_property":{"expiry":"1643731200"}}}
+                flow.response.set_text(json.dumps(obj))   
+
             if flow.request.url.startswith('http://vip1.kuwo.cn'):  
                 #print(flow.request.url)              
                 vip = '/vip/v2/user/vip'
