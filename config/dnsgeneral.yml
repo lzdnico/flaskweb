@@ -7,14 +7,18 @@ mode: Rule
 log-level: silent
 external-controller: 127.0.0.1:9090
 dns:
-  enable: false
-  listen: 0.0.0.0:53
+  enable: true
   ipv6: false
-  enhanced-mode: fake-ip
+  listen: 0.0.0.0:53
+  enhanced-mode: redir-host
   nameserver:
-    - 119.29.29.29
-    - 114.114.114.114
-    - 223.5.5.5
+  - 1.2.4.8
+  - 114.114.114.114
+  - 223.5.5.5
+  fallback:
+  - tls://dns.rubyfish.cn:853
+  - tls://1.0.0.1:853
+  - tls://dns.google:853
 cfw-bypass:
   - qq.com
   - music.163.com
