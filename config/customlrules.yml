@@ -1,7 +1,26 @@
+# > Telegram
+- DOMAIN-SUFFIX,t.me,📲 电报吹水
+- DOMAIN-SUFFIX,tdesktop.com,📲 电报吹水
+- DOMAIN-SUFFIX,telegra.ph,📲 电报吹水
+- DOMAIN-SUFFIX,telegram.me,📲 电报吹水
+- DOMAIN-SUFFIX,telegram.org,📲 电报吹水
+
+# > Telegram
+- IP-CIDR,67.198.55.0/24,📲 电报吹水
+- IP-CIDR,91.108.4.0/22,📲 电报吹水
+- IP-CIDR,91.108.8.0/22,📲 电报吹水
+- IP-CIDR,91.108.12.0/22,📲 电报吹水
+- IP-CIDR,91.108.16.0/22,📲 电报吹水
+- IP-CIDR,91.108.56.0/22,📲 电报吹水
+- IP-CIDR,109.239.140.0/24,📲 电报吹水
+- IP-CIDR,149.154.160.0/20,📲 电报吹水
+- IP-CIDR,205.172.60.0/22,📲 电报吹水
+
 # > Apple
 - DOMAIN-SUFFIX,aaplimg.com,🍎 苹果服务
 - DOMAIN-SUFFIX,apple.co,🍎 苹果服务
 - DOMAIN-SUFFIX,apple.com,🍎 苹果服务
+- DOMAIN-SUFFIX,apple-cloudkit.com,🍎 苹果服务
 - DOMAIN-SUFFIX,appstore.com,🍎 苹果服务
 - DOMAIN-SUFFIX,cdn-apple.com,🍎 苹果服务
 - DOMAIN-SUFFIX,crashlytics.com,🍎 苹果服务
@@ -278,7 +297,6 @@
 - DOMAIN-SUFFIX,aiv-cdn.net,🌍 国外媒体
 - DOMAIN-SUFFIX,aiv-delivery.net,🌍 国外媒体
 - DOMAIN-SUFFIX,amazonvideo.com,🌍 国外媒体
-- DOMAIN-SUFFIX,llnwd.net,🌍 国外媒体
 - DOMAIN-SUFFIX,media-amazon.com,🌍 国外媒体
 - DOMAIN-SUFFIX,primevideo.com,🌍 国外媒体
 # > Bahamut
@@ -296,6 +314,16 @@
 # > DAZN
 # USER-AGENT,DAZN*,🌍 国外媒体
 - DOMAIN-SUFFIX,dazn.com,🌍 国外媒体
+- DOMAIN-SUFFIX,dazn-api.com,🌍 国外媒体
+- DOMAIN,d151l6v8er5bdm.cloudfront.net,🌍 国外媒体
+- DOMAIN-KEYWORD,voddazn,🌍 国外媒体
+# > Disney+
+# USER-AGENT,Disney+*,🌍 国外媒体
+- DOMAIN-SUFFIX,bamgrid.com,🌍 国外媒体
+- DOMAIN-SUFFIX,disney-plus.net,🌍 国外媒体
+- DOMAIN-SUFFIX,disneyplus.com,🌍 国外媒体
+- DOMAIN-SUFFIX,dssott.com,🌍 国外媒体
+- DOMAIN,cdn.registerdisney.go.com,🌍 国外媒体
 # > encoreTVB
 # USER-AGENT,encoreTVB*,🌍 国外媒体
 - DOMAIN-SUFFIX,encoretvb.com,🌍 国外媒体

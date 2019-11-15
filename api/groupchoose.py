@@ -292,6 +292,7 @@ def writeRulescustom(sublink,flagname,methods,emoji,dns):    #客制化策略组
         if emoji == 'yes':
             ProxyGroup='\n\nProxy Group:\n\n' \
                         '- { name: "🔰 代理模式", type: select, proxies: ['  + clashname + ', "DIRECT",] }\n'\
+                        '- { name: "📲 电报吹水", type: select, proxies: ["🔰 代理模式",'+ clashname +'] }\n'\
                         '- { name: "🎥 NETFLIX", type: select, proxies: ["🔰 代理模式",'+ clashname +'] }\n'\
                         '- { name: "📹 YouTube", type: select, proxies: ["🔰 代理模式",'+ clashname +'] }\n'\
                         '- { name: "📺 巴哈姆特", type: select, proxies: ["🔰 代理模式",'+ clashname +'] }\n'\
@@ -304,6 +305,7 @@ def writeRulescustom(sublink,flagname,methods,emoji,dns):    #客制化策略组
         else :
             ProxyGroup='\n\nProxy Group:\n\n' \
                         '- { name: "代理模式", type: select, proxies: ['  + clashname + ', "DIRECT",] }\n'\
+                        '- { name: "Telegram", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
                         '- { name: "Netflix", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
                         '- { name: "Youtube", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\
                         '- { name: "动画疯", type: select, proxies: ["代理模式",'+ clashname +'] }\n'\

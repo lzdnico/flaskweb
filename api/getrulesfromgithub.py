@@ -45,6 +45,12 @@ def getrules():             # 自定义规则
         apple ='# > Apple\n'+ l_rule.split('# > Apple\n')[2].split('# Local Area Network\n')[0].replace('Apple','Apple') + '\n'             #Apple规则提前
         apple2 ='# > Apple\n'+ l_rule.split('# > Apple\n')[2].split('# Local Area Network\n')[0].replace('Apple','🍎 苹果服务') + '\n'
 
+        tg1 = '# > Telegram\n' + l_rule.split('# > Telegram\n')[1].split('# > Line\n')[0].replace('代理模式','📲 电报吹水')+ '\n' 
+        tg2 = '# > Telegram\n' + l_rule.split('# > Telegram\n')[2].split('# > Line\n')[0].replace('代理模式','📲 电报吹水')+ '\n'
+
+        tgemoji =  tg1 + tg2
+        tgnoemoji = tgemoji.replace('📲 电报吹水','Telegram')
+
         with open("./config/selfrules.yml", "r",encoding = 'utf-8') as f:
             selfrule = '\n'+f.read() + '\n'
 
@@ -54,8 +60,8 @@ def getrules():             # 自定义规则
         above = l_rule.split('# > Apple\n')[0]+l_rule.split('# > Apple\n')[1]+'# Local Area Network\n'+l_rule.split('# Local Area Network\n')[1].split('# GeoIP China\n')[0]
         above2 = l_rule2.split('# > Apple\n')[0]+l_rule2.split('# > Apple\n')[1]+'# Local Area Network\n'+l_rule2.split('# Local Area Network\n')[1].split('# GeoIP China\n')[0]
 
-        l_rule =  apple + bahamut_rule + ytb_rule + nf_rule + nf2_rule + above + selfrule + last
-        l_rule2 =  apple2 + bahamut_rule2 + ytb_rule2 + nf_rule2 + nf2_rule2 + above2 + selfrule + last2
+        l_rule =  tgnoemoji+apple + bahamut_rule + ytb_rule + nf_rule + nf2_rule + above + selfrule + last
+        l_rule2 =  tgemoji+apple2 + bahamut_rule2 + ytb_rule2 + nf_rule2 + nf2_rule2 + above2 + selfrule + last2
 
         with codecs.open("./config/lrules.yml", "w",encoding = 'utf-8') as f:
             f.writelines(l_rule) 
