@@ -135,6 +135,7 @@ def writeRules(sublink,selectfirst):    #策略组及规则
                     '- { name: "代理模式", type: select, proxies: ["手动选择","故障切换","DIRECT"] }\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
                     '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
+                    '- { name: "Telegram", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
                     '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "动画疯", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
@@ -149,6 +150,7 @@ def writeRules(sublink,selectfirst):    #策略组及规则
                     '- { name: "代理模式", type: select, proxies: [ "故障切换","手动选择","DIRECT"] }\n'\
                     '- { name: "故障切换", type: "fallback", "proxies": ' + proxy + ', url: "http://www.gstatic.com/generate_204", interval: 450'+ '}\n'\
                     '- { name: "手动选择", type: "select", "proxies": ' + proxy + '}\n'\
+                    '- { name: "Telegram", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "Netflix", type: select, proxies: '+proxy+' }\n'\
                     '- { name: "Youtube", type: select, proxies: ["代理模式",'+proxy1+'] }\n'\
                     '- { name: "动画疯", type: select, proxies:  ["代理模式",'+proxy1+'] }\n'\
