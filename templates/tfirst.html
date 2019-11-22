@@ -1,0 +1,98 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>❤️ Rule Generator ️️❤️</title>
+</head>
+
+<body>
+    <form method="POST" name = "form1">
+    <div align="center" class="container">
+        <header>
+            <h1>🚀 SS Rule Generator 🚁</h1>
+        </header>
+
+        <!-- Proxy tools -->
+        <div class="card">
+            <h2> 🤔 你用什么嘞？</h2>
+            <div id="proxy_tool" onchange="selChange()">
+                <div class="autobar">
+
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                        <input type="radio" name="tool" value="surge" checked>
+                            <label>Surge----</label>
+                        <div class="state p-primary-o">
+                            <i class="icon mdi mdi-meteor"></i>
+                        </div>
+                    </div>
+
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                        <input type="radio" name="tool" value="quantumultX">
+                            <label>QuanX----</label>
+                        <div class="state p-info-o">
+                            <i class="icon mdi mdi-transition-masked"></i>
+                        </div>
+                    </div>
+
+
+
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                        <input type="radio" name="tool" value="surfboard">
+                            <label>Surfboard</label>
+                        <div class="state p-success-o">
+                            <i class="icon mdi mdi-polymer" style="color:lightcoral"></i>
+                        </div>
+                    </div>
+
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                        <input type="radio" name="tool" value="clash">
+                            <label>Clash----</label>
+                        <div class="state p-success-o">
+                            <i class="icon mdi mdi-cat" style="color:palevioletred"></i>
+                        </div>
+                    </div>
+
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                        <input type="radio" name="tool" value="clashr">
+                            <label>ClashR---</label>
+                        <div class="state p-success-o">
+                            <i class="icon mdi mdi-cat" style="color:palevioletred"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Rule Snippets -->
+
+
+        <div class="card">
+            <h2>🤡 通用订阅地址</h2>
+            <input type="text" name = "left" placeholder = "填入订阅地址" size="100" value = "{{ sub }}"/>
+            <br/>
+        </div>
+
+        <div class="card">
+            <h2>🤡 API托管地址</h2>
+            <input type="text" name = "clash" placeholder = "TIndyX托管地址,，surge托管默认为surge2，想要surge3或者4，末尾增加&ver=4" readonly="readonly" value = "{{ api }}" size="100"/>
+            <br/>
+            <br/>
+            <input type="submit" value = "点击生成SubConverter托管地址""/> 
+        </div>
+
+        <footer>
+            <p> &copy;<a href="https://weibo.com/hackl0us">@Hackl0us</a>.<a href="https://weibo.com/haxck"> 美工</a>.<a href="https://github.com/tindy2013/subconverter"> API源码</a>.<a>@NicoNewBeee</a></p>
+        </footer>
+    </div>
+    </form>
+
+</body>
+
+</html>

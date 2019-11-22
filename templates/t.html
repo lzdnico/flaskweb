@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>❤️ Rule Generator ️️❤️</title>
+</head>
+
+<body>
+    <form method="POST" name = "form1">
+    <div align="center" class="container">
+        <header>
+            <h1>🚀 SS Rule Generator 🚁</h1>
+        </header>
+
+        <!-- Proxy tools -->
+        <div class="card">
+            <h2> 🤔 你用什么嘞？</h2>
+            <div id="proxy_tool" onchange="selChange()">
+                <div class="autobar">
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                            <label>Surge</label>
+                        <input type="radio" name="tool" value="surge" checked>
+                        <div class="state p-primary-o">
+                            <i class="icon mdi mdi-meteor"></i>
+                            
+                        </div>
+                    </div>
+
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                            <label>Quantumult</label>
+                        <input type="radio" name="tool" value="quantumultX">
+                        <div class="state p-info-o">
+                            <i class="icon mdi mdi-transition-masked"></i>
+                            
+                        </div>
+                    </div>
+
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                            <label>ShadowRocket</label>
+                        <input type="radio" name="tool" value="shadowrocket">
+                        <div class="state p-success-o">
+                            <i class="icon mdi mdi-rocket"></i>
+                            
+                        </div>
+                    </div>
+
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                            <label>Surfboard</label>
+                        <input type="radio" name="tool" value="surfboard">
+                        <div class="state p-success-o">
+                            <i class="icon mdi mdi-polymer" style="color:lightcoral"></i>
+                            
+                        </div>
+                    </div>
+
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                            <label>Clash</label>
+                        <input type="radio" name="tool" value="clash">
+                        <div class="state p-success-o">
+                            <i class="icon mdi mdi-cat" style="color:palevioletred"></i>
+                            
+                        </div>
+                    </div>
+
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                            <label>ClashR</label>
+                        <input type="radio" name="tool" value="clashr">
+                        <div class="state p-success-o">
+                            <i class="icon mdi mdi-cat" style="color:palevioletred"></i>
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="pretty p-icon p-round p-plain p-smooth">
+                        <input type="radio" name="tool" value="shuttle" disabled>
+                        <div class="state p-success-o">
+                            <i class="icon mdi mdi-airplane" style="color:orange"></i>
+                            <label>shuttle</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Rule Snippets -->
+
+        <h2>😍 你看着选吧！</h2>
+        <div onclick="selChange()">
+            <div id="noSelection" style="display:none; background-color: mediumspringgreen;" class="tip">
+                <p>如果您不选择任何规则，将生成「极简规则」，它同样可以满足您的上网需求。但是，由于规则绝大多数基于 IP ，因此几乎每次访问都会触发 DNS 查询，运行效率其实是不高的。</p>
+            </div>
+        </div>
+        <div id="allSelection" style="display:none; background-color: lightcoral;" class="tip">
+            <p>您选择了所有规则片段，尽管程序可以自动去重，但依然可能会降低代理工具程序的运行效率。强烈建议您根据实际需求适当选择规则。</p>
+        </div>
+        <div id="removeResult" style="display:none; background-color: lightblue;">
+            <p></p>
+        </div>
+
+        <div class="card">
+
+            <h3>🔖 基础规则</h3>
+            <div id="ruleset" onchange="selChange()">
+                <div class="pretty p-icon p-round p-smooth">
+                    <label>Apple 服务优化</label>
+                    <input type="checkbox" name="snippet" value="apple" checked>
+                    <div class="state p-success">
+                        <i class="icon mdi mdi-check"></i>
+                    </div>
+                </div>
+                <div class="pretty p-icon p-round p-smooth">
+                    <label>国内直连</label>
+                    <input type="checkbox" name="snippet" value="direct" checked>
+                    <div class="state p-success">
+                        <i class="icon mdi mdi-check"></i>
+                        
+                    </div>
+                </div>
+                <div class="pretty p-icon p-round p-smooth">
+                        <label>国外代理</label>
+                    <input type="checkbox" name="snippet" value="proxy" checked>
+                    <div class="state p-success">
+                        <i class="icon mdi mdi-check"></i>
+                        
+                    </div>
+                </div>
+                <div class="pretty p-icon p-round p-smooth">
+                        <label>常见广告域名屏蔽</label>
+                    <input type="checkbox" name="snippet" value="ad_domian" checked>
+                    <div class="state p-success">
+                        <i class="icon mdi mdi-check"></i>
+                        <label>常见广告域名屏蔽</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h4>🔩 工具</h4>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>Cydia</label>
+                <input type="checkbox" name="snippet" value="cydia">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                    
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>LastPass</label>
+                <input type="checkbox" name="snippet" value="lastpass">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>TeamViewer</label>
+                <input type="checkbox" name="snippet" value="teamviewer">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h4>🎧 流媒体</h4>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>Netflix</label>
+                <input type="checkbox" name="snippet" value="netflix">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>Spotify</label>
+                <input type="checkbox" name="snippet" value="spotify">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>TVB</label>
+                <input type="checkbox" name="snippet" value="tvb">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h4>🙊 社交分享</h4>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>KaKaoTalk</label>
+                <input type="checkbox" name="snippet" value="kakao">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>LINE</label>
+                <input type="checkbox" name="snippet" value="line">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>Pinterest</label>
+                <input type="checkbox" name="snippet" value="pinterest">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>Slack</label>
+                <input type="checkbox" name="snippet" value="slack">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>Telegram</label>
+                <input type="checkbox" name="snippet" value="telegram">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>WhatsApp</label>
+                <input type="checkbox" name="snippet" value="whatsapp">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>💡 功能性规则</h3>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>iOS Beta Siri 连接修复</label>
+                <input type="checkbox" name="snippet" value="siri">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>Wikipeida 排版优化</label>
+                <input type="checkbox" name="snippet" value="wiki">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>手机端使用知乎网页版</label>
+                <input type="checkbox" name="snippet" value="zhihu">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>Proxyee Down 代理</label>
+                <input type="checkbox" name="snippet" value="proxyee-down" disabled>
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>😲 自选规则</h3>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>TinyGFW 列表</label>
+                <input type="checkbox" name="snippet" value="tinygfw">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>学术网站</label>
+                <input type="checkbox" name="snippet" value="academic">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>屏蔽视频广告</label>
+                <input type="checkbox" name="snippet" value="video_ad">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>常见国外网站列表</label>
+                <input type="checkbox" name="snippet" value="foreign">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>广告域名列表</label>
+                <input type="checkbox" name="snippet" value="ad_list">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>国内网站广告追踪屏蔽</label>
+                <input type="checkbox" name="snippet" value="cn_track">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+            <div class="pretty p-icon p-round p-smooth">
+                    <label>成人网站</label>
+                <input type="checkbox" name="snippet" value="adult">
+                <div class="state p-success">
+                    <i class="icon mdi mdi-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🤡 通用订阅地址</h2>
+            <input type="text" name = "left" placeholder = "例如：@香港&1倍@美国@PPCW 即：只获取香港的1倍节点，美国节点，PPCW节点" size="100" value = "{{ sub }}"/>
+            <br/>
+        </div>
+
+        <div class="card">
+                <h2>🤡 节点分组</h2>
+                <input type="text" name = "custom" placeholder = "例如：@香港&1倍@美国@PPCW 即：只获取香港的1倍节点，美国节点，PPCW节点" size="100" value = "{{ pg }}"/>
+                <br/>
+            </div>
+        <div class="card">
+            <h2>🤡 API托管地址</h2>
+            <input type="text" name = "clash" placeholder = "CLash托管地址" readonly="readonly" value = "{{ api }}" size="100"/>
+            <br/>
+            <br/>
+            <input type="submit" value = "点击生成客制化托管地址""/> 
+        </div>
+
+
+    </div>
+    </form>
+    <footer>
+        <p> &copy; 2018 | 开发者: <a href="https://weibo.com/hackl0us">@Hackl0us</a>, 美工: <a href="https://weibo.com/haxck">@haxck</a></p>
+    </footer>
+</body>
+
+</html>
